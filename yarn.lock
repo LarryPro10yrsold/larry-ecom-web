@@ -396,6 +396,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/object-schema/-/object-schema-2.1.4.tgz#9e69f8bb4031e11df79e03db09f9dbbae1740843"
   integrity sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==
 
+"@fontsource/roboto@^5.0.14":
+  version "5.0.14"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.14.tgz#a3f67e47116309233ff3bba2c3613d2cf0302529"
+  integrity sha512-zHAxlTTm9RuRn9/StwclFJChf3z9+fBrOxC3fw71htjHP1BgXNISwRjdJtAKAmMe5S2BzgpnjkQR93P9EZYI/Q==
+
 "@humanwhocodes/module-importer@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/module-importer/-/module-importer-1.0.1.tgz#af5b2691a22b44be847b0ca81641c5fb6ad0172c"
@@ -442,6 +447,13 @@
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-6.0.0.tgz#308e658bc1e766d2e9a5a8cf65503500535051e1"
   integrity sha512-x5qg4ndVmSY5jzp1AgSQSh/iI3H3oN30JwSQAKCIopH6iHGyqEzLx5/gZVbpWzlzt5xoeX8eubqPzEiUo8ClYg==
+
+"@mui/icons-material@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-6.0.0.tgz#331a2c28d28173ef2bca51303c48300fa027e392"
+  integrity sha512-rtQSoztIpGtl+Uy2mZ00VtrSxt8jnPqcCZ4MPBVVfJdxyxVRe04snkckGmPGMn4PwjSGiiu9wAVdBTkmXJzfyA==
+  dependencies:
+    "@babel/runtime" "^7.25.0"
 
 "@mui/material@^6.0.0":
   version "6.0.0"
