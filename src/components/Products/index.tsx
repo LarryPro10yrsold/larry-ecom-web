@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import Product from "./Product";
+import RowOfProducts from "./Product/RowOfProducts";
+import RowOfProducts2 from "./Product/RowOfProducts4";
 
 function Products() {
   return (
@@ -8,15 +9,7 @@ function Products() {
       <Typography fontSize="36px" fontWeight="600">
         Trending Products
       </Typography>{" "}
-      <Box sx={{ display: "flex", gap: "18px" }}>
-        <Product /> <Product /> <Product /> <Product />
-      </Box>{" "}
-      <Box sx={{ display: "flex", gap: "18px", mt: "22px" }}>
-        <Product /> <Product /> <Product /> <Product />
-      </Box>{" "}
-      <Box sx={{ display: "flex", gap: "18px", mt: "22px" }}>
-        <Product /> <Product /> <Product /> <Product />
-      </Box>
+      <RowOfProducts /> <RowOfProducts2 />
     </Box>
   );
 }

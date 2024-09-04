@@ -1,8 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 
 function MiniOptions(props: any) {
-  const { title, subTitle } = props;
+  const { title, subTitle, icon } = props;
   return (
     <Box
       sx={{
@@ -14,7 +13,7 @@ function MiniOptions(props: any) {
         width: "337px",
       }}
     >
-      <LocalShippingIcon sx={{ fontSize: "35px" }} />
+      {icon}
       <Box>
         <Typography sx={{ fontSize: "20px", lineHeight: "28px" }}>
           {title}

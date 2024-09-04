@@ -1,12 +1,13 @@
 import { Box, Typography } from "@mui/material";
 
-function Product() {
+function Product(props: any) {
+  const { image, rates } = props;
   return (
     <Box sx={{ border: "1px solid #e5e7eb", width: "360px", py: "25px" }}>
       {" "}
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         {" "}
-        <img src="src/assets/a.jpeg" alt="e" width="295px" height="200px" />
+        <img src={image} alt="e" width="295px" height="200px" />
       </Box>
       <Box sx={{}}>
         <Typography sx={{ color: "rgb(107 114 128)", px: "32px", pt: "16px" }}>
@@ -17,9 +18,11 @@ function Product() {
         </Typography>{" "}
         <Typography
           sx={{ fontSize: "16px", px: "32px", color: "rgb(75 85 99)" }}
-        >
-          4.94
-        </Typography>
+        ></Typography>
+        <Box sx={{ display: "flex", gap: "0px" }}>
+          {rates}
+          <Typography>i don't know</Typography>
+        </Box>
         <Box>
           <Box sx={{ display: "flex", px: "32px", gap: "61px" }}>
             {" "}
