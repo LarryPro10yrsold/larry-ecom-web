@@ -3,7 +3,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
-function BTNS() {
+function HeaderMenu() {
   return (
     <Box
       sx={{
@@ -14,12 +14,22 @@ function BTNS() {
       }}
     >
       <Typography
-        sx={{ fontSize: "20px", lineHeight: "28px", fontWeight: "500" }}
+        sx={{
+          fontSize: "20px",
+          lineHeight: "28px",
+          fontWeight: "500",
+          cursor: "pointer",
+        }}
       >
         Products
       </Typography>{" "}
       <Typography
-        sx={{ fontSize: "20px", lineHeight: "28px", fontWeight: "500" }}
+        sx={{
+          fontSize: "20px",
+          lineHeight: "28px",
+          fontWeight: "500",
+          cursor: "pointer",
+        }}
       >
         Categories
       </Typography>
@@ -37,7 +47,12 @@ function BTNS() {
           <PersonIcon style={{ fontSize: 35, color: "black" }} />
         </Box>
         <Typography
-          sx={{ fontSize: "25px", lineHeight: "36px", fontWeight: "500" }}
+          sx={{
+            fontSize: "25px",
+            lineHeight: "36px",
+            fontWeight: "500",
+            cursor: "pointer",
+          }}
         >
           Login
         </Typography>{" "}
@@ -50,7 +65,9 @@ function BTNS() {
         }}
       >
         {" "}
-        <ShoppingCartIcon style={{ fontSize: 35, opacity: "0.5" }} />{" "}
+        <ShoppingCartIcon
+          style={{ fontSize: 35, opacity: "0.5", cursor: "pointer" }}
+        />{" "}
         <Box
           sx={{
             backgroundColor: "rgb(220 38 38 )",
@@ -70,9 +87,11 @@ function BTNS() {
           0
         </Box>
       </Box>
-      <DarkModeIcon style={{ fontSize: 35, color: "black" }} />{" "}
+      <DarkModeIcon
+        style={{ fontSize: 35, color: "black", cursor: "pointer" }}
+      />{" "}
     </Box>
   );
 }
 
-export default BTNS;
+export default HeaderMenu;
