@@ -23,7 +23,7 @@ function App() {
       <AdditionalOptions />
       <Products />
       <Offer />{" "}
-      <Box sx={{ ml: "370px", mt: "32px" }}>
+      <Box sx={{ mx: { lg: "20px", xl: "370px" }, mt: "32px" }}>
         <Typography fontSize="36px" fontWeight="600">
           New Arrirvals
         </Typography>{" "}

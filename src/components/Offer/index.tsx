@@ -5,10 +5,10 @@ function Banner() {
     <Box
       sx={{
         backgroundColor: "rgb(227 237 246)",
-        width: "67%",
+        width: { lg: "97.4%", xl: "67%" },
         height: "470px",
         display: "flex",
-        mx: "370px",
+        mx: { lg: "20px", xl: "370px" },
         alignItems: "center",
       }}
     >
@@ -26,7 +26,7 @@ function Banner() {
             sx={{
               fontSize: "36px",
               fontWeight: "600",
-              ml: "220px",
+              ml: { lg: "170px", xl: "220px" },
               lineHeight: "40px",
             }}
           >
@@ -38,7 +38,7 @@ function Banner() {
               fontWeight: "600",
               display: "flex",
               textAlign: "center",
-              ml: "290px",
+              ml: { lg: "240px", xl: "290px" },
             }}
           >
             Grab it now
@@ -54,7 +54,7 @@ function Banner() {
               fontSize: "18px",
               fontWeight: "600",
               cursor: "pointer",
-              ml: "325px",
+              ml: { lg: "275px", xl: "325px" },
             }}
           >
             Shop Now

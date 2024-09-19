@@ -10,7 +10,7 @@ function MiniOptions(props: any) {
         backgroundColor: "rgb(243 244 246)",
         display: "flex",
         gap: "8px",
-        width: "337px",
+        width: { lg: "312px", xl: "337px" },
       }}
     >
       {icon}

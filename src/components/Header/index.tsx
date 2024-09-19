@@ -1,8 +1,19 @@
-import { Box, Input, Typography } from "@mui/material";
+import { Box, createTheme, Input, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderMenu from "./HeaderMenu";
 
 function Header() {
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
   return (
     <Box
       sx={{
@@ -20,10 +31,18 @@ function Header() {
       }}
     >
       <Box
-        sx={{ width: "67vw", display: "flex", justifyContent: "space-between" }}
+        sx={{
+          width: { md: "97vw", lg: "88vw", xl: "67vw" },
+          display: "flex",
+          justifyContent: "space-between",
+        }}
       >
         <Typography
-          sx={{ fontSize: "36px", lineHeight: "36px", fontWeight: "500" }}
+          sx={{
+            fontSize: { xs: "0px", sm: "", md: "36px", lg: "36px", xl: "36px" },
+            // lineHeight: "36px",
+            fontWeight: "500",
+          }}
         >
           Shopify
         </Typography>
@@ -32,7 +51,7 @@ function Header() {
             placeholder="Search for a product..."
             sx={{
               border: "2px solid rgb(59 130 246)",
-              width: "435px",
+              width: { md: "285px", lg: "400px", xl: "400px" },
               px: "12px",
               py: "4px",
               "&.MuiInputBase-root:before": {

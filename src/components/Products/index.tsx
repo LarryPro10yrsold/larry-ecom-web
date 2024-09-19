@@ -4,7 +4,7 @@ import RowOfProducts2 from "./Product/RowOfProducts4";
 
 function Products() {
   return (
-    <Box sx={{ mx: "370px", mt: "32px" }}>
+    <Box sx={{ mx: { lg: "20px", xl: "370px" }, mt: "32px" }}>
       {" "}
       <Typography fontSize="36px" fontWeight="600">
         Trending Products

@@ -4,7 +4,7 @@ function CreditBanner() {
   return (
     <Box
       sx={{
-        width: "97.2%",
+        width: { lg: "95.6%", xl: "97.2%" },
         backgroundColor: "rgb(59 130 246)",
         color: "white",
         p: 4,

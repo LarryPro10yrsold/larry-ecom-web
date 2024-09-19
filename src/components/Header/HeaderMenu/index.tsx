@@ -1,9 +1,20 @@
-import { Box, Typography } from "@mui/material";
+import { Box, createTheme, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 function HeaderMenu() {
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
   return (
     <Box
       sx={{

@@ -11,7 +11,13 @@ function Banner() {
         justifyContent: "center",
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: "385px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: { lg: "145px", xl: "385px" },
+        }}
+      >
         <Box>
           <Typography>Starting at $999</Typography>{" "}
           <Typography
