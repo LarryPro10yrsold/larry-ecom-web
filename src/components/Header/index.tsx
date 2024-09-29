@@ -39,19 +39,31 @@ function Header() {
       >
         <Typography
           sx={{
-            fontSize: { xs: "0px", sm: "", md: "36px", lg: "36px", xl: "36px" },
+            fontSize: {
+              xs: "25px",
+              sm: "32px",
+              md: "36px",
+              lg: "36px",
+              xl: "36px",
+            },
             // lineHeight: "36px",
             fontWeight: "500",
           }}
         >
           Shopify
         </Typography>
-        <Box sx={{ display: "flex" }}>
+        <Box
+          sx={{
+            display: { xs: "none", sm: "flex" },
+            mx: { sm: "20px", md: 0 },
+          }}
+        >
           <Input
             placeholder="Search for a product..."
             sx={{
               border: "2px solid rgb(59 130 246)",
-              width: { md: "285px", lg: "400px", xl: "400px" },
+              width: { sm: "150px", md: "285px", lg: "400px", xl: "400px" },
+
               px: "12px",
               py: "4px",
               "&.MuiInputBase-root:before": {

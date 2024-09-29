@@ -8,33 +8,60 @@ function AdditionalOptions() {
   return (
     <Box
       sx={{
-        display: "flex",
+        display: { sm: "block", md: "flex" },
         justifyContent: "center",
         alignItems: "center",
         gap: "8px",
         mt: "32px",
+        pl: { sm: "80px", md: 0 },
       }}
     >
-      <MiniOptions
-        title="Free Delivery"
-        subTitle="Orders from all items"
-        icon={<LocalShippingIcon sx={{ fontSize: "35px" }} />}
-      />{" "}
-      <MiniOptions
-        title="Return & Refund"
-        subTitle="Money back guarantee"
-        icon={<PaidIcon sx={{ fontSize: "35px" }} />}
-      />{" "}
-      <MiniOptions
-        title="Member Discount"
-        subTitle="On order over $99"
-        icon={<img src="src/assets/discount.svg" height="36px" width="36px" />}
-      />{" "}
-      <MiniOptions
-        title="Support 24/7"
-        subTitle="Contact us 24 hours a day"
-        icon={<SupportAgentOutlinedIcon sx={{ fontSize: "35px" }} />}
-      />
+      <Box
+        sx={{
+          display: { sm: "flex", md: "flex" },
+          gap: { sm: "1px", md: 1 },
+        }}
+      >
+        <MiniOptions
+          title="Free Delivery"
+          subTitle="Orders from all items"
+          icon={
+            <LocalShippingIcon
+              sx={{ fontSize: { xs: "35px", sm: "30px", md: "35px" } }}
+            />
+          }
+        />{" "}
+        <MiniOptions
+          title="Return & Refund"
+          subTitle="Money back guarantee"
+          icon={
+            <PaidIcon
+              sx={{ fontSize: { xs: "35px", sm: "30px", md: "35px" } }}
+            />
+          }
+        />{" "}
+      </Box>
+      <Box
+        sx={{
+          display: { sm: "flex", md: "flex" },
+          gap: { xs: "35px", sm: "1px", md: 1 },
+        }}
+      >
+        <MiniOptions
+          title="Member Discount"
+          subTitle="On order over $99"
+          icon={<img src="src/assets/discount.svg" height="32" width="32" />}
+        />{" "}
+        <MiniOptions
+          title="Support 24/7"
+          subTitle="Contact us 24 hours a day"
+          icon={
+            <SupportAgentOutlinedIcon
+              sx={{ fontSize: { xs: "35px", sm: "30px", md: "35px" } }}
+            />
+          }
+        />
+      </Box>{" "}
     </Box>
   );
 }

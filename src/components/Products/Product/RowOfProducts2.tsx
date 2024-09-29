@@ -1,11 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import { Box } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 import Product from ".";
 
-function RowOfProducts4() {
+function RowOfProducts2() {
   return (
     <Box sx={{ display: { xs: "block", sm: "flex" }, gap: "18px", my: "16px" }}>
       {" "}
@@ -85,4 +84,4 @@ function RowOfProducts4() {
   );
 }
 
-export default RowOfProducts4;
+export default RowOfProducts2;

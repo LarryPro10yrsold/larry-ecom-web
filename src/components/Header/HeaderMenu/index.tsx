@@ -21,7 +21,7 @@ function HeaderMenu() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: "32px",
+        gap: { sm: "15px", md: "32px" },
       }}
     >
       <Typography

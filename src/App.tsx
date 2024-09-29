@@ -16,14 +16,27 @@ function App() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        width: { sm: "100%" },
       }}
     >
       <Header />
       <Banner />
       <AdditionalOptions />
-      <Products />
+      <Box
+        sx={{
+          mx: { xs: "40px", sm: "0px", md: "0px", lg: "20px", xl: "370px" },
+          mt: "32px",
+        }}
+      >
+        <Products />
+      </Box>
       <Offer />{" "}
-      <Box sx={{ mx: { lg: "20px", xl: "370px" }, mt: "32px" }}>
+      <Box
+        sx={{
+          mx: { xs: "40px", sm: "80px", md: "15px", lg: "20px", xl: "370px" },
+          mt: "32px",
+        }}
+      >
         <Typography fontSize="36px" fontWeight="600">
           New Arrirvals
         </Typography>{" "}

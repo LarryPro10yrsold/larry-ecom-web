@@ -6,27 +6,30 @@ function Banner() {
       sx={{
         backgroundColor: "rgb(227 237 246)",
         width: "100vw",
-        height: "470px",
+        height: { sm: "300px", md: "470px" },
         display: "flex",
-        justifyContent: "center",
+        justifyContent: { sm: "block", md: "center" },
       }}
     >
       <Box
         sx={{
-          display: "flex",
+          display: { xs: "block", sm: "flex" },
           alignItems: "center",
-          gap: { lg: "145px", xl: "385px" },
+          gap: { sm: "0px", md: "", lg: "145px", xl: "385px" },
+          pt: { xs: "30px", sm: 0 },
         }}
       >
-        <Box>
-          <Typography>Starting at $999</Typography>{" "}
+        <Box sx={{ ml: { sm: "20px", md: 0 } }}>
+          <Typography sx={{ fontSize: { sm: "20px", md: "20px" } }}>
+            Starting at $999
+          </Typography>{" "}
           <Typography
             sx={{
               marginTop: "18px",
-              fontSize: "3rem",
-              lineHeight: "50px",
+              fontSize: { sm: "25px", md: "3rem" },
+              lineHeight: { sm: "35px", md: "50px" },
               fontWeight: "600",
-              width: "500px",
+              width: { sm: "300px", md: "500px" },
             }}
           >
             The best notebook collection 2024
@@ -71,9 +74,20 @@ function Banner() {
             Shop Now
           </Box>
         </Box>
-        <Box sx={{ ml: "auto" }}>
-          <img src="src/assets/hero.png" alt="e" />
-        </Box>
+        <Box
+          component="img"
+          sx={{
+            width: {
+              xs: "100%",
+              sm: "40%",
+              md: "450px",
+              lg: "500px",
+              xl: "500px",
+            },
+          }}
+          src="src/assets/hero.png"
+          alt="e"
+        />
       </Box>
     </Box>
   );

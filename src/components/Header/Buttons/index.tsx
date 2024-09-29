@@ -10,12 +10,12 @@ function Header() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: "32px",
+        gap: { sm: "10px", md: "32px", lg: "32px", xl: "32px" },
       }}
     >
       <Typography
         sx={{
-          fontSize: "20px",
+          fontSize: { xs: "100px", sm: "20px" },
           lineHeight: "28px",
           fontWeight: "500",
           cursor: "pointer",

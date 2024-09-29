@@ -1,10 +1,15 @@
 import { Box, Typography } from "@mui/material";
 import RowOfProducts from "./Product/RowOfProducts";
-import RowOfProducts2 from "./Product/RowOfProducts4";
+import RowOfProducts2 from "./Product/RowOfProducts2";
 
 function Products() {
   return (
-    <Box sx={{ mx: { lg: "20px", xl: "370px" }, mt: "32px" }}>
+    <Box
+      sx={{
+        mx: { sm: "80px", md: "15px", lg: "20px", xl: "370px" },
+        mt: "32px",
+      }}
+    >
       {" "}
       <Typography fontSize="36px" fontWeight="600">
         Trending Products
