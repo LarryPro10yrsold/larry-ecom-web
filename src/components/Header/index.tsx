@@ -35,6 +35,7 @@ function Header() {
           width: { md: "97vw", lg: "88vw", xl: "67vw" },
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
         <Typography
@@ -48,6 +49,7 @@ function Header() {
             },
             // lineHeight: "36px",
             fontWeight: "500",
+            mr: { xs: "10px", sm: 0 },
           }}
         >
           Shopify
@@ -87,7 +89,9 @@ function Header() {
             <SearchIcon style={{ fontSize: 40, color: "white" }} />
           </Box>
         </Box>{" "}
-        <HeaderMenu />
+        <Box sx={{ display: "flex" }}>
+          <HeaderMenu />
+        </Box>
       </Box>
     </Box>
   );

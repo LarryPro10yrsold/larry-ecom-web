@@ -15,7 +15,7 @@ function Header() {
     >
       <Typography
         sx={{
-          fontSize: { xs: "100px", sm: "20px" },
+          fontSize: { xs: "10px", sm: "20px" },
           lineHeight: "28px",
           fontWeight: "500",
           cursor: "pointer",

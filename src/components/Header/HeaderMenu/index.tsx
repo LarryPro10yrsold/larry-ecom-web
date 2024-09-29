@@ -21,13 +21,12 @@ function HeaderMenu() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: { sm: "15px", md: "32px" },
+        gap: { xs: "5px", sm: "15px", md: "32px" },
       }}
     >
       <Typography
         sx={{
-          fontSize: "20px",
-          lineHeight: "28px",
+          fontSize: { xs: "15px", sm: "20px" },
           fontWeight: "500",
           cursor: "pointer",
         }}
@@ -36,8 +35,7 @@ function HeaderMenu() {
       </Typography>{" "}
       <Typography
         sx={{
-          fontSize: "20px",
-          lineHeight: "28px",
+          fontSize: { xs: "15px", sm: "20px" },
           fontWeight: "500",
           cursor: "pointer",
         }}
@@ -53,14 +51,10 @@ function HeaderMenu() {
         }}
       >
         {" "}
-        <Box>
-          {" "}
-          <PersonIcon style={{ fontSize: 35, color: "black" }} />
-        </Box>
+        <PersonIcon style={{ fontSize: "30px", color: "black" }} />
         <Typography
           sx={{
-            fontSize: "25px",
-            lineHeight: "36px",
+            fontSize: { xs: "15px", sm: "25px" },
             fontWeight: "500",
             cursor: "pointer",
           }}
@@ -77,7 +71,7 @@ function HeaderMenu() {
       >
         {" "}
         <ShoppingCartIcon
-          style={{ fontSize: 35, opacity: "0.5", cursor: "pointer" }}
+          style={{ fontSize: "30px", opacity: "0.5", cursor: "pointer" }}
         />{" "}
         <Box
           sx={{
@@ -86,8 +80,8 @@ function HeaderMenu() {
             height: "25px",
             borderRadius: "100%",
             position: "absolute",
-            bottom: "22px",
-            left: "17px",
+            bottom: "16px",
+            left: "10px",
             color: "white",
             fontFamily: "sans-serif",
             display: "flex",
@@ -99,7 +93,7 @@ function HeaderMenu() {
         </Box>
       </Box>
       <DarkModeIcon
-        style={{ fontSize: 35, color: "black", cursor: "pointer" }}
+        style={{ fontSize: "30px", color: "black", cursor: "pointer" }}
       />{" "}
     </Box>
   );

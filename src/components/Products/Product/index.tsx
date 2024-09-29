@@ -72,8 +72,8 @@ function Product(props: any) {
         <Box
           sx={{
             display: "flex",
-            px: { sm: "0px", md: "9px", lg: "26px", xl: "32px" },
-            gap: { sm: "10px", md: "3px", lg: "26px", xl: "41px" },
+            px: { sm: "0px", md: "0px", lg: "26px", xl: "32px" },
+            gap: { xs: "60px", sm: "10px", md: "3px", lg: "26px", xl: "41px" },
           }}
         >
           {" "}
@@ -119,9 +119,9 @@ function Product(props: any) {
             <Typography
               sx={{
                 fontSize: {
-                  xs: "8px",
+                  xs: "15px",
                   sm: "13px",
-                  md: "13px",
+                  md: "10px",
                   lg: "15px",
                   xl: "15px",
                 },

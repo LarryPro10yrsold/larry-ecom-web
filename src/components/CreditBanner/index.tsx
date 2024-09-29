@@ -14,7 +14,7 @@ function CreditBanner() {
       <Box>
         <Typography
           sx={{
-            ml: { xs: "16%", sm: "36%", md: "40%", lg: "44.9%", xl: "44.9%" },
+            ml: { xs: "16%", sm: "36%", md: "39%", lg: "42.5%", xl: "44.9%" },
           }}
         >
           © Copyright | All Rights Reserved
