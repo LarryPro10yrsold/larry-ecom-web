@@ -6,7 +6,7 @@ function Banner() {
       sx={{
         backgroundColor: "rgb(227 237 246)",
         width: { xs: 0, lg: "97.4%", xl: "67%" },
-        height: { md: "400px", lg: "340px" },
+        height: { md: "400px", lg: "340px", xl: "500px" },
         display: { xs: "block", sm: "flex" },
         mx: { xs: "40px", sm: "82px", md: "20px", lg: "20px", xl: "370px" },
         alignItems: "center",
@@ -18,7 +18,7 @@ function Banner() {
           src="src/assets/offer.jpg"
           alt="e"
           sx={{
-            height: { sm: "190px", md: "340px" },
+            height: { sm: "190px", md: "340px", xl: "500px" },
             width: {
               xs: "341px",
               sm: "283px",

@@ -17,26 +17,29 @@ function RowOfProducts() {
       >
         <Product
           image="src/assets/a.jpeg"
-          rates={
-            <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-              <StarBorderIcon />
-            </Box>
-          }
+          rates={1}
+
+          // rates={
+          //   <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
+          //     <StarIcon />
+          //     <StarIcon />
+          //     <StarIcon />
+          //     <StarIcon />
+          //     <StarBorderIcon />
+          //   </Box>
+          // }
         />{" "}
         <Product
           image="src/assets/a.jpeg"
-          rates={
-            <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
-              <StarIcon /> <StarIcon />
-              <StarIcon />
-              <StarIcon />
-              <StarBorderIcon />
-            </Box>
-          }
+          rates={4}
+          // rates={
+          //   <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
+          //     <StarIcon /> <StarIcon />
+          //     <StarIcon />
+          //     <StarIcon />
+          //     <StarBorderIcon />
+          //   </Box>
+          // }
         />{" "}
       </Box>
       <Box

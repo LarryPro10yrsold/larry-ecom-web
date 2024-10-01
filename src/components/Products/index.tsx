@@ -6,7 +6,7 @@ function Products() {
   return (
     <Box
       sx={{
-        mx: { sm: "80px", md: "15px", lg: "20px", xl: "370px" },
+        mx: { sm: "80px", md: "15px", lg: "20px", xl: "0px" },
         mt: "32px",
       }}
     >

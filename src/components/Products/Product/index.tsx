@@ -1,6 +1,37 @@
 import { Box, createTheme, Typography } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { ReactNode } from "react";
+import { Star, StarBorder, StarOutline } from "@mui/icons-material";
+
 function Product(props: any) {
   const { image, rates } = props;
+
+  const renderRates = () => {
+    const stars: ReactNode[] = [];
+
+    // if rate is 4 => push 4 stars into the "stars" array
+    // if rate is 5 => push 5 stars into the "stars" array
+
+    {
+      /* map stars array into JSX element */
+    }
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rates) {
+        stars.push(<StarIcon key={i} />);
+      } else {
+        stars.push(<StarBorderIcon key={i} />);
+      }
+    }
+    return (
+      <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
+        {stars?.map((star) => {
+          return star;
+        })}
+        {/* <StarBorderIcon /> */}
+      </Box>
+    );
+  };
 
   return (
     <Box
@@ -60,7 +91,7 @@ function Product(props: any) {
             p: 0,
           }}
         >
-          {rates}
+          {renderRates()}
           <Typography
             sx={{
               fontSize: { md: "12px", lg: "20px", xl: "20px" },
