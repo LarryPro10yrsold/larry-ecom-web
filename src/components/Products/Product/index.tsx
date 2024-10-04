@@ -2,7 +2,13 @@ import { Box, createTheme, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { ReactNode } from "react";
-import { Star, StarBorder, StarOutline } from "@mui/icons-material";
+import StarHalfIcon from "@mui/icons-material/StarHalf";
+import {
+  MailOutlineSharp,
+  Star,
+  StarBorder,
+  StarOutline,
+} from "@mui/icons-material";
 
 function Product(props: any) {
   const { image, rates } = props;
@@ -16,9 +22,21 @@ function Product(props: any) {
     {
       /* map stars array into JSX element */
     }
-    for (let i = 1; i <= 5; i++) {
-      if (i <= rates) {
+    for (let i = 0; i <= 4; i++) {
+      console.log(i, rates);
+      //  0.5 - 0 = 0.5
+      //  1.5 - 1 = 0.5
+      //  2.5 - 2 = 0.5
+
+      // 0.5 % 0 === error
+      // i < Math.floor(rates) (4)
+      // i < Math.floor(rates) (4)
+      // i < Math.floor(rates) (4)
+      //
+      if (i < Math.floor(rates)) {
         stars.push(<StarIcon key={i} />);
+      } else if (i < rates) {
+        stars.push(<StarHalfIcon key={i} />);
       } else {
         stars.push(<StarBorderIcon key={i} />);
       }

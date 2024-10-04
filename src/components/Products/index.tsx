@@ -14,7 +14,8 @@ function Products() {
       <Typography fontSize="36px" fontWeight="600">
         Trending Products
       </Typography>{" "}
-      <RowOfProducts /> <RowOfProducts2 />
+      <RowOfProducts />
+      {/* <RowOfProducts2 /> */}
     </Box>
   );
 }

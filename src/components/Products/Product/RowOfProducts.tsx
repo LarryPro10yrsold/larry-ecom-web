@@ -17,7 +17,7 @@ function RowOfProducts() {
       >
         <Product
           image="src/assets/a.jpeg"
-          rates={1}
+          rates={3.5}
 
           // rates={
           //   <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
@@ -29,7 +29,7 @@ function RowOfProducts() {
           //   </Box>
           // }
         />{" "}
-        <Product
+        {/* <Product
           image="src/assets/a.jpeg"
           rates={4}
           // rates={
@@ -40,7 +40,7 @@ function RowOfProducts() {
           //     <StarBorderIcon />
           //   </Box>
           // }
-        />{" "}
+        />{" "} */}
       </Box>
       <Box
         sx={{
@@ -55,7 +55,7 @@ function RowOfProducts() {
           my: "16px",
         }}
       >
-        <Product
+        {/* <Product
           image="src/assets/a.jpeg"
           rates={
             <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
@@ -81,7 +81,7 @@ function RowOfProducts() {
               <StarBorderIcon />
             </Box>
           }
-        />{" "}
+        />{" "} */}
       </Box>
     </Box>
   );
