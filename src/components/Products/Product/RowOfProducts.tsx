@@ -17,72 +17,16 @@ function RowOfProducts() {
       >
         <Product
           image="src/assets/a.jpeg"
-          rates={3.5}
-
-          // rates={
-          //   <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
-          //     <StarIcon />
-          //     <StarIcon />
-          //     <StarIcon />
-          //     <StarIcon />
-          //     <StarBorderIcon />
-          //   </Box>
-          // }
+          rates={2}
+          name="hello!!"
+          originalPrice={200}
+          discountPrice={100}
+          type="greeting"
         />{" "}
-        {/* <Product
-          image="src/assets/a.jpeg"
-          rates={4}
-          // rates={
-          //   <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
-          //     <StarIcon /> <StarIcon />
-          //     <StarIcon />
-          //     <StarIcon />
-          //     <StarBorderIcon />
-          //   </Box>
-          // }
-        />{" "} */}
-      </Box>
-      <Box
-        sx={{
-          display: {
-            xs: "block",
-            sm: "block",
-            md: "flex",
-            lg: "flex",
-            xl: "flex",
-          },
-          gap: "18px",
-          my: "16px",
-        }}
-      >
-        {/* <Product
-          image="src/assets/a.jpeg"
-          rates={
-            <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
-              <StarIcon />
-              <StarIcon />
-              <StarBorderIcon /> <StarBorderIcon />
-              <StarBorderIcon />
-            </Box>
-          }
-        />{" "}
-        <Product
-          image="src/assets/a.jpeg"
-          rates={
-            <Box
-              sx={{
-                display: "flex",
-                mx: "28px",
-                color: "#FFC300 ",
-              }}
-            >
-              <StarIcon />
-              <StarIcon /> <StarIcon /> <StarBorderIcon />
-              <StarBorderIcon />
-            </Box>
-          }
-        />{" "} */}
-      </Box>
+        <Product image="src/assets/a.jpeg" rates={2} />{" "}
+        <Product image="src/assets/a.jpeg" rates={2} />{" "}
+        <Product image="src/assets/a.jpeg" rates={2} />{" "}
+      </Box>{" "}
     </Box>
   );
 }
