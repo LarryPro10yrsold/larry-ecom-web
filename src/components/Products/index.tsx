@@ -15,7 +15,7 @@ function Products() {
         Trending Products
       </Typography>{" "}
       <RowOfProducts />
-      {/* <RowOfProducts2 /> */}
+      <RowOfProducts2 />
     </Box>
   );
 }

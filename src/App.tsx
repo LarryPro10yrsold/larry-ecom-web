@@ -40,7 +40,7 @@ function App() {
         <Typography fontSize="36px" fontWeight="600">
           New Arrirvals
         </Typography>{" "}
-        {/* <RowOfProducts3 /> <RowOfProducts4 /> */}
+        <RowOfProducts3 /> <RowOfProducts4 />
       </Box>
       <CreditBanner />
     </Box>

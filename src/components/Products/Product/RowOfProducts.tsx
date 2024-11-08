@@ -23,9 +23,30 @@ function RowOfProducts() {
           discountPrice={100}
           type="greeting"
         />{" "}
-        <Product image="src/assets/a.jpeg" rates={2} />{" "}
-        <Product image="src/assets/a.jpeg" rates={2} />{" "}
-        <Product image="src/assets/a.jpeg" rates={2} />{" "}
+        <Product
+          image="src/assets/a.jpeg"
+          rates={2}
+          name="hello!!"
+          originalPrice={200}
+          discountPrice={100}
+          type="greeting"
+        />{" "}
+        <Product
+          image="src/assets/a.jpeg"
+          rates={2}
+          name="hello!!"
+          originalPrice={200}
+          discountPrice={100}
+          type="greeting"
+        />{" "}
+        <Product
+          image="src/assets/a.jpeg"
+          rates={2}
+          name="hello!!"
+          originalPrice={200}
+          discountPrice={100}
+          type="greeting"
+        />{" "}
       </Box>{" "}
     </Box>
   );

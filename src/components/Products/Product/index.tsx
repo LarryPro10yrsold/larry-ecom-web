@@ -1,12 +1,13 @@
 import { Box, createTheme, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 import { Stars } from "@mui/icons-material";
 
 function Product(props: any) {
   const { image, rates, name, originalPrice, discountPrice, type } = props;
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const renderRates = () => {
     const stars: ReactNode[] = [];
@@ -46,6 +47,9 @@ function Product(props: any) {
         {/* <StarBorderIcon /> */}
       </Box>
     );
+  };
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   const calcluteDiscountPercentage =
