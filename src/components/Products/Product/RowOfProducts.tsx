@@ -43,9 +43,9 @@ function RowOfProducts() {
           image="src/assets/a.jpeg"
           rates={2}
           name="hello!!"
-          originalPrice={200}
-          discountPrice={100}
-          type="greeting"
+          // originalPrice={200}
+          // discountPrice={100}
+          // type="greeting"
         />{" "}
       </Box>{" "}
     </Box>

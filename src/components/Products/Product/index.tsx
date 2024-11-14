@@ -127,7 +127,8 @@ function Product(props: any) {
           sx={{
             display: "flex",
             px: { sm: "0px", md: "0px", lg: "26px", xl: "32px" },
-            gap: { xs: "60px", sm: "10px", md: "3px", lg: "26px", xl: "41px" },
+            gap: { xs: "60px", sm: "10px", md: "3px", lg: "49px", xl: "41px" },
+            alignItems: "center",
           }}
         >
           {" "}
@@ -141,7 +142,13 @@ function Product(props: any) {
             >
               {discountPricee}
             </Typography>
-            <Box sx={{ display: "flex", gap: "8px" }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "8px",
+                alignItems: { md: "0px", lg: "center" },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: { md: "12px", lg: "16px", xl: "16px" },
@@ -164,10 +171,11 @@ function Product(props: any) {
               color: "white",
               backgroundColor: "rgb(236 72 153)",
               borderRadius: "4px",
-              width: { sm: "200px", md: "180px", lg: "200px", xl: "203px" },
+              width: { sm: "200px", md: "180px", lg: "103px", xl: "103px" },
               height: { md: "30px", lg: "30px", xl: "30px" },
               display: "flex",
               alignItems: "center",
+              justifyContent: { md: "none", lg: "center", xl: "center" },
             }}
           >
             <Typography
