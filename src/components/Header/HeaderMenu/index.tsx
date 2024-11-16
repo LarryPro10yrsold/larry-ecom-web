@@ -1,20 +1,37 @@
-import { Box, createTheme, Typography } from "@mui/material";
+import {
+  Box,
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { useState } from "react";
 
 function HeaderMenu() {
-  const theme = createTheme({
-    breakpoints: {
-      values: {
-        xs: 0,
-        sm: 600,
-        md: 960,
-        lg: 1280,
-        xl: 1920,
-      },
-    },
-  });
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  // const [background, setBackground] = useState("white");
+  // const [textColor, setTextColor] = useState("black");
+
+  const onToggleDarkMode = () => {
+    // if dark mode is true
+    //      background is black
+    //      textColor is white
+    // else
+    //     background is white
+    //     textColor is black
+
+    // You need:
+    // state darkMode  => boolean
+    // state background => string
+    // state textColor => string
+
+    console.log("working");
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
     <Box
       sx={{
@@ -22,6 +39,8 @@ function HeaderMenu() {
         alignItems: "center",
         justifyContent: "center",
         gap: { xs: "5px", sm: "15px", md: "32px" },
+        backgroundColor: isDarkMode ? "white" : "black",
+        color: isDarkMode ? "black" : "white",
       }}
     >
       <Typography
@@ -46,12 +65,13 @@ function HeaderMenu() {
         sx={{
           display: "flex",
           alignItems: "center",
-          opacity: "0.5",
+          opacity: isDarkMode ? "0.5" : "white",
           justifyContent: "center",
+          backgroundColor: isDarkMode ? "white" : "black",
         }}
       >
         {" "}
-        <PersonIcon style={{ fontSize: "30px", color: "black" }} />
+        <PersonIcon style={{ fontSize: "30px" }} />
         <Typography
           sx={{
             fontSize: { xs: "15px", sm: "25px" },
@@ -67,11 +87,17 @@ function HeaderMenu() {
           display: "flex",
           width: "28px",
           position: "relative",
+          backgroundColor: isDarkMode ? "white" : "black",
         }}
       >
         {" "}
         <ShoppingCartIcon
-          style={{ fontSize: "30px", opacity: "0.5", cursor: "pointer" }}
+          style={{
+            fontSize: "30px",
+            opacity: isDarkMode ? "0.5" : "1",
+            color: isDarkMode ? "black" : "white",
+            cursor: "pointer",
+          }}
         />{" "}
         <Box
           sx={{
@@ -92,9 +118,15 @@ function HeaderMenu() {
           0
         </Box>
       </Box>
-      <DarkModeIcon
-        style={{ fontSize: "30px", color: "black", cursor: "pointer" }}
-      />{" "}
+      <Box onClick={() => onToggleDarkMode()}>
+        <DarkModeIcon
+          style={{
+            fontSize: "30px",
+            color: isDarkMode ? "black" : "white",
+            cursor: "pointer",
+          }}
+        />{" "}
+      </Box>
     </Box>
   );
 }
