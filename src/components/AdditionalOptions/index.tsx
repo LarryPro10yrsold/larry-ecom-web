@@ -3,8 +3,12 @@ import MiniOptions from "./MiniOptions";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import PaidIcon from "@mui/icons-material/Paid";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
-
-function AdditionalOptions() {
+import DiscountIcon from "@mui/icons-material/Discount";
+interface BannerInterface {
+  isDarkMode: boolean;
+}
+function AdditionalOptions(props: BannerInterface) {
+  const { isDarkMode } = props;
   return (
     <Box
       sx={{
@@ -13,7 +17,8 @@ function AdditionalOptions() {
         alignItems: "center",
         gap: "8px",
         mt: "32px",
-        pl: { sm: "80px", md: 0 },
+        pl: { xs: "22px", sm: "80px", md: 0 },
+        color: isDarkMode ? "white" : "black",
       }}
     >
       <Box
@@ -30,6 +35,7 @@ function AdditionalOptions() {
               sx={{ fontSize: { xs: "35px", sm: "30px", md: "35px" } }}
             />
           }
+          isDarkMode={isDarkMode}
         />{" "}
         <MiniOptions
           title="Return & Refund"
@@ -39,6 +45,7 @@ function AdditionalOptions() {
               sx={{ fontSize: { xs: "35px", sm: "30px", md: "35px" } }}
             />
           }
+          isDarkMode={isDarkMode}
         />{" "}
       </Box>
       <Box
@@ -50,7 +57,12 @@ function AdditionalOptions() {
         <MiniOptions
           title="Member Discount"
           subTitle="On order over $99"
-          icon={<img src="src/assets/discount.svg" height="32" width="32" />}
+          icon={
+            <DiscountIcon
+              sx={{ fontSize: { xs: "35px", sm: "30px", md: "35px" } }}
+            />
+          }
+          isDarkMode={isDarkMode}
         />{" "}
         <MiniOptions
           title="Support 24/7"
@@ -60,6 +72,7 @@ function AdditionalOptions() {
               sx={{ fontSize: { xs: "35px", sm: "30px", md: "35px" } }}
             />
           }
+          isDarkMode={isDarkMode}
         />
       </Box>{" "}
     </Box>

@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { Box, Input, Typography } from "@mui/material";
+import { Box, Input, Modal, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderMenu from "./HeaderMenu";
+import MenuIcon from "@mui/icons-material/Menu";
 
-function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+interface HeaderInterface {
+  isDarkMode: boolean;
+  onToggleDarkMode: () => void;
+  numberOfProducts: any;
+}
 
-  const onToggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+function Header(props: HeaderInterface) {
+  const { isDarkMode, onToggleDarkMode, numberOfProducts } = props;
 
   return (
     <Box
@@ -17,13 +19,14 @@ function Header() {
         display: "flex",
         alignItems: "center",
         maxWidth: "100%",
-        justifyContent: "center",
+        justifyContent: { xs: "space-between", sm: "center" },
         py: "16px",
         fontFamily: "Roboto",
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
         position: "sticky",
         top: "0",
-        backgroundColor: isDarkMode ? "black" : "white",
+
+        backgroundColor: isDarkMode ? "rgb(30 41 59)" : "white",
         color: isDarkMode ? "white" : "black",
       }}
     >
@@ -33,6 +36,7 @@ function Header() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          pl: { xs: "30px", sm: 0 },
         }}
       >
         <Typography
@@ -44,8 +48,8 @@ function Header() {
               lg: "36px",
               xl: "36px",
             },
-            fontWeight: "500",
-            mr: { xs: "10px", sm: 0 },
+            fontWeight: "600",
+            mr: { xs: "180px", sm: 0 },
           }}
         >
           Shopify
@@ -70,7 +74,7 @@ function Header() {
               "&.MuiInputBase-root:after": {
                 borderBottom: "none",
               },
-              backgroundColor: isDarkMode ? "black" : "white",
+              backgroundColor: isDarkMode ? "rgb(30 41 59)" : "white",
             }}
           />
           <Box
@@ -86,13 +90,19 @@ function Header() {
             <SearchIcon style={{ fontSize: 40, color: "white" }} />
           </Box>
         </Box>
-        <Box sx={{ display: "flex" }}>
+        <MenuIcon
+          sx={{
+            display: { xs: "block", sm: "none" },
+          }}
+        />
+        <Box sx={{ display: "flex", ml: { xs: "10px", sm: 0 } }}>
           <HeaderMenu
             isDarkMode={isDarkMode}
             onToggleDarkMode={onToggleDarkMode}
+            numberOfProducts={numberOfProducts}
           />
         </Box>
-      </Box>
+      </Box>{" "}
     </Box>
   );
 }

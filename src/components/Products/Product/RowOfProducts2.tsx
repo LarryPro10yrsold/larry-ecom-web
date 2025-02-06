@@ -4,7 +4,12 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 import Product from ".";
 
-function RowOfProducts2() {
+interface BannerInterface {
+  onAddToCart: () => void;
+}
+
+function RowOfProducts2(props: BannerInterface) {
+  const { onAddToCart } = props;
   return (
     <Box sx={{ display: { xs: "block", sm: "flex" }, gap: "18px", my: "16px" }}>
       {" "}
@@ -12,42 +17,51 @@ function RowOfProducts2() {
         sx={{
           display: { sm: "block", md: "flex", lg: "flex", xl: "flex" },
           gap: "18px",
-          my: "16px",
+          my: { sm: "0px", md: "16px" },
+          mx: { md: "0px", lg: "0px" },
         }}
       >
-        <Product
-          image="src/assets/a.jpeg"
-          rates={2}
-          name="hello!!"
-          originalPrice={200}
-          discountPrice={100}
-          type="greeting"
-        />{" "}
-        <Product
-          image="src/assets/a.jpeg"
-          rates={2}
-          name="hello!!"
-          originalPrice={200}
-          discountPrice={100}
-          type="greeting"
-        />{" "}
-        <Product
-          image="src/assets/a.jpeg"
-          rates={2}
-          name="hello!!"
-          originalPrice={200}
-          discountPrice={100}
-          type="greeting"
-        />{" "}
-        <Product
-          image="src/assets/a.jpeg"
-          rates={2}
-          name="hello!!"
-          originalPrice={200}
-          discountPrice={100}
-          type="greeting"
-        />{" "}
-      </Box>
+        <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
+          <Product
+            image="src/assets/q.webp"
+            rates={5}
+            name="mac display"
+            originalPrice={10000}
+            discountPrice={5000}
+            type="device"
+            onAddToCart={onAddToCart}
+          />{" "}
+          <Product
+            image="src/assets/w.jpg"
+            rates={4.5}
+            name="ipad"
+            originalPrice={2000}
+            discountPrice={1000}
+            type="device"
+            onAddToCart={onAddToCart}
+          />{" "}
+        </Box>{" "}
+        <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
+          <Product
+            image="src/assets/water.webp"
+            rates={5}
+            name="water"
+            originalPrice={5}
+            discountPrice={3}
+            type="refreshment"
+            onAddToCart={onAddToCart}
+          />{" "}
+          <Product
+            image="src/assets/chill.jpg"
+            rates={5}
+            name="chill dog"
+            originalPrice={50}
+            discountPrice={30}
+            type="animal"
+            onAddToCart={onAddToCart}
+          />{" "}
+        </Box>
+      </Box>{" "}
     </Box>
   );
 }

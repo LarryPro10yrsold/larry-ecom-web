@@ -2,7 +2,13 @@ import { Box, Typography } from "@mui/material";
 import RowOfProducts from "./Product/RowOfProducts";
 import RowOfProducts2 from "./Product/RowOfProducts2";
 
-function Products() {
+interface BannerInterface {
+  isDarkMode: boolean;
+  onAddToCart: () => void;
+}
+
+function Products(props: BannerInterface) {
+  const { onAddToCart } = props;
   return (
     <Box
       sx={{
@@ -11,11 +17,15 @@ function Products() {
       }}
     >
       {" "}
-      <Typography fontSize="36px" fontWeight="600">
+      <Typography
+        fontSize="36px"
+        fontWeight="600"
+        sx={{ ml: { xs: "15px", sm: 0 } }}
+      >
         Trending Products
       </Typography>{" "}
-      <RowOfProducts />
-      <RowOfProducts2 />
+      <RowOfProducts onAddToCart={onAddToCart} />
+      <RowOfProducts2 onAddToCart={onAddToCart} />
     </Box>
   );
 }

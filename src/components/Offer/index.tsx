@@ -1,15 +1,20 @@
 import { Box, Typography } from "@mui/material";
+interface BannerInterface {
+  isDarkMode: boolean;
+}
 
-function Banner() {
+function Banner(props: BannerInterface) {
+  const { isDarkMode } = props;
   return (
     <Box
       sx={{
-        backgroundColor: "rgb(227 237 246)",
+        backgroundColor: isDarkMode ? "rgb(71 85 105)" : "rgb(227 237 246)",
         width: { xs: 0, lg: "97.4%", xl: "67%" },
         height: { md: "400px", lg: "340px", xl: "500px" },
         display: { xs: "block", sm: "flex" },
         mx: { xs: "40px", sm: "82px", md: "20px", lg: "20px", xl: "370px" },
         alignItems: "center",
+        color: isDarkMode ? "white" : "black",
       }}
     >
       <Box sx={{ display: { xs: "block", sm: "flex" }, alignItems: "center" }}>
@@ -30,56 +35,68 @@ function Banner() {
         />
         <Box
           sx={{
-            backgroundColor: "rgb(227 237 246)",
+            backgroundColor: isDarkMode ? "rgb(71 85 105)" : "rgb(227 237 246)",
             height: { sm: "190px", md: "340px", lg: "190px" },
-            width: { sm: "280px", md: "478px", lg: "478px" },
+            width: { xs: "340px", sm: "315px", md: "478px", lg: "478px" },
+            py: { xs: 2, sm: 0 },
           }}
         >
           <Box
             sx={{
-              mt: { md: "70px", lg: 0 },
-              display: { xs: "flex", sm: "block" },
+              display: { xs: "flex", sm: "block", xl: "flex" },
             }}
           >
-            <Box sx={{ ml: { sm: "25px", md: 0 } }}>
+            <Box
+              sx={{
+                ml: { xs: "45px", sm: "25px", md: 0 },
+                mt: { md: "100px", lg: 0 },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: {
-                    xs: "36px",
-                    sm: "30px",
+                    xs: "26px",
+                    sm: "25px",
                     md: "36px",
                     lg: "36px",
-                    xl: "36px",
+                    xl: "38px",
                   },
                   fontWeight: "600",
                   ml: {
-                    xs: "41px",
-                    sm: "11px",
-                    md: "123px",
-                    lg: "216px",
-                    xl: "260px",
+                    xs: "31px",
+                    sm: "41px",
+                    md: "73px",
+                    lg: "170px",
+                    xl: "190px",
                   },
                   lineHeight: "40px",
-                  width: { xs: "300px" },
+                  width: {
+                    xs: "200px",
+                    sm: "200px",
+                    md: "400px",
+                    lg: "500px",
+                    xl: "500px",
+                  },
+                  display: { md: "flex", lg: "flex", xl: "flex" },
                 }}
               >
                 Don't miss the{" "}
                 <Typography
                   sx={{
                     fontSize: {
-                      xs: "36px",
-                      sm: "30px",
+                      xs: "26px",
+                      sm: "25px",
                       md: "36px",
                       lg: "36px",
-                      xl: "36px",
+                      xl: "38px",
                     },
                     fontWeight: "600",
                     ml: {
-                      xs: "73px",
-                      sm: "72px",
-                      md: "82px",
-                      lg: "90px",
-                      xl: "85px",
+                      xs: "63px",
+                      sm: "64px",
+                      md: "8px",
+                      lg: "8px",
+                      xl: "8px",
                     },
                     lineHeight: "40px",
                     display: { xs: "flex", sm: "block" },
@@ -91,21 +108,21 @@ function Banner() {
               <Typography
                 sx={{
                   fontSize: {
-                    xs: "36px",
-                    sm: "30px",
+                    xs: "26px",
+                    sm: "25px",
                     md: "36px",
                     lg: "36px",
-                    xl: "36px",
+                    xl: "32px",
                   },
                   fontWeight: "600",
                   display: "flex",
                   textAlign: "center",
                   ml: {
                     xs: "50px",
-                    sm: "28px",
+                    sm: "60px",
                     md: "145px",
                     lg: "240px",
-                    xl: "290px",
+                    xl: "280px",
                   },
                 }}
               >
@@ -113,22 +130,23 @@ function Banner() {
               </Typography>
               <Box
                 sx={{
-                  backgroundColor: { xs: "rgb(227 237 246)", sm: "white" },
+                  backgroundColor: "white",
                   px: "24px",
                   py: "12px",
                   mt: "16px",
                   borderRadius: "6px",
-                  width: "80px",
                   fontSize: "18px",
                   fontWeight: "600",
                   cursor: "pointer",
                   ml: {
-                    xs: "100px",
+                    xs: "50px",
                     sm: "54px",
                     md: "185px",
                     lg: "275px",
-                    xl: "325px",
+                    xl: "300px",
                   },
+                  color: "black",
+                  width: { xs: "140px", sm: "140px" },
                 }}
               >
                 Shop Now

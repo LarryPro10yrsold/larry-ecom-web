@@ -1,86 +1,107 @@
-import { Box, createTheme, Typography } from "@mui/material";
+import { useState } from "react";
+import { Box, Typography, Modal, Input } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { ReactNode, useState } from "react";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
-import { Stars } from "@mui/icons-material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import CloseIcon from "@mui/icons-material/Close";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 
-function Product(props: any) {
-  const { image, rates, name, originalPrice, discountPrice, type } = props;
-  const [isDarkMode, setIsDarkMode] = useState(false);
+interface HeaderMenuInterface {
+  isDarkMode?: boolean;
+  onAddToCart?: () => void;
+  image: string;
+  rates: number;
+  name: string;
+  originalPrice: number;
+  discountPrice: number;
+  type: string;
+}
 
+function Product(props: HeaderMenuInterface) {
+  const {
+    image,
+    rates,
+    name,
+    originalPrice,
+    discountPrice,
+    type,
+    onAddToCart,
+  } = props;
+  const [numberOfProducts, setNumberOfProducts] = useState(0);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpen2, setIsPopupOpen2] = useState(false);
+
+  const handleAddToCart = () => {
+    if (onAddToCart !== undefined) onAddToCart();
+    setNumberOfProducts(numberOfProducts + 1);
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+  const closePopup2 = () => {
+    setIsPopupOpen2(false);
+  };
+  const handleRegister = () => {
+    setIsPopupOpen2(true);
+    setIsPopupOpen(false);
+  };
+  const HandleGoBack = () => {
+    setIsPopupOpen2(false);
+    setIsPopupOpen(true);
+  };
   const renderRates = () => {
-    const stars: ReactNode[] = [];
-
-    // if rate is 4 => push 4 stars into the "stars" array
-    // if rate is 5 => push 5 stars into the "stars" array
-
-    {
-      /* map stars array into JSX element */
-    }
+    const stars = [];
     for (let i = 0; i <= 4; i++) {
-      console.log(i, rates);
-      //  0.5 - 0 = 0.5
-      //  1.5 - 1 = 0.5
-      //  2.5 - 2 = 0.5
-
-      //     0 3.5 - whole star because it's lower than Math.floor(rates) which is 3
-      //     1 3.5 - whole star because it's lower than Math.floor(rates) which is 3
-      //     2 3.5 - whole star because it's lower than Math.floor(rates) which is 3
-      //     3 3.5 - half a star beacuse i(3) is smaller than 3.5
-      //     4 3.5 - i is larger than rates, leading to a result of an empty star for the rest.
-
       if (i < Math.floor(rates)) {
         stars.push(<StarIcon key={i} />);
       } else if (i < rates) {
-        // Math.floor(rates) <= i < rates: i = 3
         stars.push(<StarHalfIcon key={i} />);
       } else {
         stars.push(<StarBorderIcon key={i} />);
       }
     }
     return (
-      <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>
-        {stars?.map((star) => {
-          return star;
-        })}
-        {/* <StarBorderIcon /> */}
-      </Box>
+      <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>{stars}</Box>
     );
   };
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
-  const calcluteDiscountPercentage =
+  const calculateDiscountPercentage =
     ((originalPrice - discountPrice) / originalPrice) * 100;
-  const discountPricee = originalPrice - discountPrice;
-  // const amountOfStars = stars.length;
+
   return (
     <Box
       sx={{
         border: "1px solid #e5e7eb",
         width: {
-          xs: "300px",
-          sm: "232px",
-          md: "195px",
+          xs: "350px",
+          sm: "292px",
+          md: "225px",
           lg: "335px",
           xl: "360px",
         },
         py: { xs: "30px", sm: "20px", md: "20px", lg: "25px", xl: "25px" },
-        mt: { sm: "20px", md: 0, lg: 0, xl: 0 },
+        mt: { xs: "20px", sm: "20px", md: 0, lg: 0, xl: 0 },
         px: { xs: "20px", lg: 0 },
+        ml: { xs: "15px", sm: 0 },
       }}
     >
-      {" "}
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        {" "}
         <Box
           component="img"
           src={image}
           alt="e"
           sx={{
-            width: { sm: "240px", md: "200px", lg: "275px", xl: "295px" },
+            width: {
+              xs: "300px",
+              sm: "240px",
+              md: "200px",
+              lg: "275px",
+              xl: "295px",
+            },
             height: { md: "130px", lg: "200px", xl: "200px" },
           }}
         />
@@ -89,29 +110,24 @@ function Product(props: any) {
         <Typography
           sx={{
             color: "rgb(107 114 128)",
-            px: { sm: "0px", md: "9px", lg: "26px", xl: "32px" },
+            px: { sm: "0px", md: "0px", lg: "26px", xl: "32px" },
             pt: "16px",
           }}
         >
           {type}
-        </Typography>{" "}
+        </Typography>
         <Typography
           sx={{
             fontSize: "18px",
-            px: { sm: "0px", md: "9px", lg: "26px", xl: "32px" },
+            px: { sm: "0px", md: "0px", lg: "26px", xl: "32px" },
           }}
         >
           {name}
-        </Typography>{" "}
-        <Typography
-          sx={{ fontSize: "16px", px: "32px", color: "rgb(75 85 99)" }}
-        ></Typography>
+        </Typography>
         <Box
           sx={{
             display: "flex",
-            gap: "0px",
             alignItems: "center",
-            p: 0,
           }}
         >
           {renderRates()}
@@ -120,18 +136,17 @@ function Product(props: any) {
               fontSize: { md: "12px", lg: "20px", xl: "20px" },
             }}
           >
-            {/* {amountOfStars} */}5
+            {rates}
           </Typography>
         </Box>
         <Box
           sx={{
             display: "flex",
             px: { sm: "0px", md: "0px", lg: "26px", xl: "32px" },
-            gap: { xs: "60px", sm: "10px", md: "3px", lg: "49px", xl: "41px" },
             alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          {" "}
           <Box>
             <Typography
               sx={{
@@ -140,7 +155,7 @@ function Product(props: any) {
                 lineHeight: "28px",
               }}
             >
-              {discountPricee}
+              ${discountPrice}
             </Typography>
             <Box
               sx={{
@@ -160,25 +175,27 @@ function Product(props: any) {
               <Typography
                 sx={{ fontSize: { md: "12px", lg: "16px", xl: "16px" } }}
               >
-                -{calcluteDiscountPercentage}%
+                -{calculateDiscountPercentage}%
               </Typography>
             </Box>
           </Box>
           <Box
+            onClick={handleAddToCart}
             sx={{
               py: "8px",
               px: "16px",
               color: "white",
               backgroundColor: "rgb(236 72 153)",
               borderRadius: "4px",
-              width: { sm: "200px", md: "180px", lg: "103px", xl: "103px" },
+              width: { sm: "43px", md: "43px", lg: "43px", xl: "43px" },
               height: { md: "30px", lg: "30px", xl: "30px" },
               display: "flex",
               alignItems: "center",
               justifyContent: { md: "none", lg: "center", xl: "center" },
+              cursor: "pointer",
             }}
           >
-            <Typography
+            <ShoppingCartIcon
               sx={{
                 fontSize: {
                   xs: "15px",
@@ -188,12 +205,165 @@ function Product(props: any) {
                   xl: "15px",
                 },
               }}
-            >
-              ADD TO CART
-            </Typography>
+            />
           </Box>
         </Box>
       </Box>
+      <Modal open={isPopupOpen} onClose={closePopup}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: 400,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <Typography
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "20px",
+              fontWeight: "600",
+              justifyContent: "center",
+              position: "relative",
+            }}
+          >
+            <LockOpenIcon />
+            Login
+            <LockOpenIcon />{" "}
+            <CloseIcon
+              onClick={closePopup}
+              sx={{
+                position: "absolute",
+                bottom: "25px",
+                left: "330px",
+                cursor: "pointer",
+              }}
+            />
+          </Typography>{" "}
+          <Input
+            placeholder="Your username here..."
+            sx={{
+              border: "2px solid rgb(59 130 246)",
+              width: "336px",
+              px: "12px",
+              py: "2px",
+              "&.MuiInputBase-root:before": {
+                borderBottom: "none",
+              },
+              "&.MuiInputBase-root:after": {
+                borderBottom: "none",
+              },
+              mt: 2,
+              borderRadius: "4px",
+            }}
+          />{" "}
+          <Input
+            placeholder="Your password here..."
+            sx={{
+              border: "2px solid rgb(59 130 246)",
+              width: "336px",
+              px: "12px",
+              py: "2px",
+              "&.MuiInputBase-root:before": {
+                borderBottom: "none",
+              },
+              "&.MuiInputBase-root:after": {
+                borderBottom: "non   e",
+              },
+              mt: 2,
+              borderRadius: "4px",
+            }}
+          />
+          <Box
+            sx={{
+              bgcolor: "rgb(59 130 246)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              p: 1,
+              color: "white",
+              borderRadius: "2px",
+              mt: 1,
+            }}
+          >
+            Submit
+          </Box>
+          <Box sx={{ display: "flex", mt: 1, mx: 11 }}>
+            No Account?
+            <Typography
+              onClick={handleRegister}
+              sx={{ color: "rgb(59 130 246)", ml: "4px", cursor: "pointer" }}
+            >
+              {" "}
+              Register
+            </Typography>
+          </Box>{" "}
+          <Typography
+            sx={{
+              fontWeight: "600",
+              fontSize: "12px",
+              textDecoration: "underline",
+              mt: "20px",
+            }}
+          >
+            YOUR PURCHASE WILL BE COUNTED BUT IT WILL BE ANONYMOUS (fake)
+          </Typography>
+        </Box>
+      </Modal>{" "}
+      <Modal open={isPopupOpen2} onClose={closePopup2}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "40%",
+            left: "42%",
+            width: 400,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Typography
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "20px",
+              fontWeight: "600",
+              justifyContent: "center",
+              position: "relative",
+              gap: "5px",
+            }}
+          >
+            <EditNoteIcon />
+            Register
+            <EditNoteIcon />{" "}
+            <CloseIcon
+              onClick={closePopup2}
+              sx={{
+                position: "absolute",
+                bottom: "25px",
+                left: "330px",
+                cursor: "pointer",
+              }}
+            />
+          </Typography>{" "}
+          <Box sx={{ mt: 1 }}>
+            This is a hobby project for development purpose only. No well suited
+            backend has been used here.
+            <Typography
+              onClick={HandleGoBack}
+              sx={{ color: "rgb(59 130 246)", cursor: "pointer" }}
+            >
+              {" "}
+              Go to login
+            </Typography>
+          </Box>
+        </Box>
+      </Modal>
     </Box>
   );
 }

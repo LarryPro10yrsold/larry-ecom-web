@@ -4,7 +4,7 @@ function CreditBanner() {
   return (
     <Box
       sx={{
-        width: { md: "94%", lg: "95.6%", xl: "97.2%" },
+        width: { md: "100%", lg: "100%", xl: "100%" },
         backgroundColor: "rgb(59 130 246)",
         color: "white",
         p: 4,
@@ -22,7 +22,20 @@ function CreditBanner() {
         <Typography sx={{ ml: { xs: "44%", sm: "48.9%" } }}>
           M A Alim
         </Typography>{" "}
-      </Box>
+        <Typography
+          sx={{
+            ml: {
+              xs: "8.8%",
+              sm: "32%",
+              md: "36.1%",
+              lg: "40.6%",
+              xl: "43.6%",
+            },
+          }}
+        >
+          Customer Support Number - 123 456 789
+        </Typography>
+      </Box>{" "}
     </Box>
   );
 }
