@@ -1,101 +1,113 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 
-import Product from '.';
-interface BannerInterface {
-  onAddToCart: () => void;
-}
+import Product from ".";
 
 const products = [
   {
-    image: 'src/assets/a.jpeg',
+    image: "src/assets/a.jpeg",
     rates: 5,
-    name: 'raging frog',
+    name: "raging frog",
     originalPrice: 50,
     discountPrice: 25,
-    type: 'madness',
+    type: "madness",
   },
   {
-    image: 'src/assets/monke.jpeg',
+    image: "src/assets/monke.jpeg",
     rates: 5,
-    name: 'legendary turtle',
+    name: "legendary turtle",
     originalPrice: 50,
     discountPrice: 20,
-    type: 'animal',
-  },
-  {
-    image: 'src/assets/e.jpeg',
-    rates: 5,
-    name: 'panda',
-    originalPrice: 200,
-    discountPrice: 100,
-    type: 'animal',
-  },
-  {
-    image: 'src/assets/t.jpg',
-    rates: 4.5,
-    name: 'baby car',
-    originalPrice: 80,
-    discountPrice: 20,
-    type: 'car',
+    type: "animal",
   },
 ];
-
+const products2 = [
+  {
+    image: "src/assets/e.jpeg",
+    rates: 5,
+    name: "panda",
+    originalPrice: 200,
+    discountPrice: 100,
+    type: "animal",
+  },
+  {
+    image: "src/assets/baby car.jpeg",
+    rates: 4.5,
+    name: "baby car",
+    originalPrice: 80,
+    discountPrice: 20,
+    type: "car",
+  },
+];
+// // const products = [
+//   {
+//     image: "src/assets/a.jpeg",
+//     rates: 5,
+//     name: "raging frog",
+//     originalPrice: 50,
+//     discountPrice: 25,
+//     type: "madness",
+//   },
+//   {
+//     image: "src/assets/monke.jpeg",
+//     rates: 5,
+//     name: "legendary turtle",
+//     originalPrice: 50,
+//     discountPrice: 20,
+//     type: "animal",
+//   },
+// ];
+// const products2 = [
+//   {
+//     image: "src/assets/e.jpeg",
+//     rates: 5,
+//     name: "panda",
+//     originalPrice: 200,
+//     discountPrice: 100,
+//     type: "animal",
+//   },
+//   {
+//     image: "src/assets/baby car.jpeg",
+//     rates: 4.5,
+//     name: "baby car",
+//     originalPrice: 80,
+//     discountPrice: 20,
+//     type: "car",
+//   },
+// ];
 // Using map() method to convert (or to map) this product list into React component
 
-function RowOfProducts(props: BannerInterface) {
-  const { onAddToCart } = props;
+function RowOfProducts() {
   return (
-    <Box sx={{ display: { xs: 'block', sm: 'flex' }, gap: '18px', my: '16px' }}>
-      {' '}
-      <Box
-        sx={{
-          display: { sm: 'block', md: 'flex', lg: 'flex', xl: 'flex' },
-          gap: '18px',
-          my: { sm: '0px', md: '16px' },
-          mx: { xs: '0px', sm: '0px', lg: '0px' },
-        }}
-      >
-        <Box sx={{ display: { sm: 'flex', md: 'flex' }, gap: '18px' }}>
-          <Product
-            image='src/assets/a.jpeg'
-            rates={5}
-            name='raging frog'
-            originalPrice={50}
-            discountPrice={25}
-            type='madness'
-            onAddToCart={onAddToCart}
-          />{' '}
-          <Product
-            image='src/assets/monke.jpeg'
-            rates={5}
-            name='legendary turtle'
-            originalPrice={50}
-            discountPrice={20}
-            type='animal'
-            onAddToCart={onAddToCart}
-          />{' '}
-        </Box>{' '}
-        <Box sx={{ display: { sm: 'flex', md: 'flex' }, gap: '18px' }}>
-          <Product
-            image='src/assets/e.jpeg'
-            rates={5}
-            name='panda'
-            originalPrice={200}
-            discountPrice={100}
-            type='animal'
-            onAddToCart={onAddToCart}
-          />{' '}
-          <Product
-            image='src/assets/t.jpg'
-            rates={4.5}
-            name='baby car'
-            originalPrice={80}
-            discountPrice={20}
-            type='car'
-            onAddToCart={onAddToCart}
-          />{' '}
-        </Box>
-      </Box>{' '}
+    <Box sx={{ display: { xs: "block", sm: "flex" }, gap: "18px", my: "16px" }}>
+      {" "}
+      <Box sx={{ display: { md: "flex" }, gap: "18px" }}>
+        {products.map(function (data) {
+          return (
+            <Product
+              image={data.image}
+              rates={data.rates}
+              name={data.name}
+              originalPrice={data.originalPrice}
+              discountPrice={0}
+              type={data.type}
+            />
+          );
+        })}{" "}
+      </Box>
+      <Box sx={{ display: { md: "flex" }, gap: "18px" }}>
+        {products2.map(function (data) {
+          return (
+            <Product
+              image={data.image}
+              rates={data.rates}
+              name={data.name}
+              originalPrice={data.originalPrice}
+              discountPrice={0}
+              type={data.type}
+            />
+          );
+        })}{" "}
+      </Box>
     </Box>
   );
 }

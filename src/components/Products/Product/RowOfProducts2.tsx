@@ -1,67 +1,81 @@
 import { Box } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 import Product from ".";
+const products = [
+  {
+    image: "src/assets/q.webp",
+    rates: 5,
+    name: "mac display",
+    originalPrice: 10000,
+    discountPrice: 5000,
+    type: "device",
+  },
+  {
+    image: "src/assets/w.jpg",
+    rates: 4.5,
+    name: "ipad",
+    originalPrice: 2000,
+    discountPrice: 1000,
+    type: "device",
+  },
+];
+const products2 = [
+  {
+    image2: "src/assets/water.webp",
+    rates2: 5,
+    name2: "water",
+    originalPrice2: 5,
+    discountPrice2: 3,
+    type2: "refreshment",
+  },
+  {
+    image2: "src/assets/chill.jpg",
+    rates2: 5,
+    name2: "chill dog",
+    originalPrice2: 50,
+    discountPrice2: 30,
+    type2: "animal",
+  },
+];
 
-interface BannerInterface {
-  onAddToCart: () => void;
-}
-
-function RowOfProducts2(props: BannerInterface) {
-  const { onAddToCart } = props;
+function RowOfProducts2() {
   return (
-    <Box sx={{ display: { xs: "block", sm: "flex" }, gap: "18px", my: "16px" }}>
-      {" "}
-      <Box
-        sx={{
-          display: { sm: "block", md: "flex", lg: "flex", xl: "flex" },
-          gap: "18px",
-          my: { sm: "0px", md: "16px" },
-          mx: { md: "0px", lg: "0px" },
-        }}
-      >
-        <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-          <Product
-            image="src/assets/q.webp"
-            rates={5}
-            name="mac display"
-            originalPrice={10000}
-            discountPrice={5000}
-            type="device"
-            onAddToCart={onAddToCart}
-          />{" "}
-          <Product
-            image="src/assets/w.jpg"
-            rates={4.5}
-            name="ipad"
-            originalPrice={2000}
-            discountPrice={1000}
-            type="device"
-            onAddToCart={onAddToCart}
-          />{" "}
-        </Box>{" "}
-        <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-          <Product
-            image="src/assets/water.webp"
-            rates={5}
-            name="water"
-            originalPrice={5}
-            discountPrice={3}
-            type="refreshment"
-            onAddToCart={onAddToCart}
-          />{" "}
-          <Product
-            image="src/assets/chill.jpg"
-            rates={5}
-            name="chill dog"
-            originalPrice={50}
-            discountPrice={30}
-            type="animal"
-            onAddToCart={onAddToCart}
-          />{" "}
-        </Box>
+    <Box
+      sx={{
+        display: { sm: "block", md: "flex", lg: "flex", xl: "flex" },
+        gap: "18px",
+        my: { sm: "0px", md: "16px" },
+        mx: { md: "0px", lg: "0px" },
+      }}
+    >
+      <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
+        {products.map(function (data) {
+          return (
+            <Product
+              image={data.image}
+              rates={data.rates}
+              name={data.name}
+              originalPrice={data.originalPrice}
+              discountPrice={data.discountPrice}
+              type={data.type}
+            />
+          );
+        })}{" "}
       </Box>{" "}
+      <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
+        {products2.map(function (data) {
+          return (
+            <Product
+              image={data.image2}
+              rates={data.rates2}
+              name={data.name2}
+              originalPrice={data.originalPrice2}
+              discountPrice={data.discountPrice2}
+              type={data.type2}
+            />
+          );
+        })}{" "}
+      </Box>
     </Box>
   );
 }
