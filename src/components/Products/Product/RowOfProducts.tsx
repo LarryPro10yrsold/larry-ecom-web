@@ -80,7 +80,12 @@ function RowOfProducts() {
   return (
     <Box sx={{ display: { xs: "block", sm: "flex" }, gap: "18px", my: "16px" }}>
       {" "}
-      <Box sx={{ display: { md: "flex" }, gap: "18px" }}>
+      <Box
+        sx={{
+          display: { sm: "flex" },
+          flexDirection: { sm: "column", md: "row" },
+        }}
+      >
         {products.map(function (data) {
           return (
             <Product
@@ -94,7 +99,12 @@ function RowOfProducts() {
           );
         })}{" "}
       </Box>
-      <Box sx={{ display: { md: "flex" }, gap: "18px" }}>
+      <Box
+        sx={{
+          display: { sm: "flex" },
+          flexDirection: { sm: "column", md: "row" },
+        }}
+      >
         {products2.map(function (data) {
           return (
             <Product

@@ -87,6 +87,7 @@ function Product(props: HeaderMenuInterface) {
         mt: { xs: "20px", sm: "20px", md: 0, lg: 0, xl: 0 },
         px: { xs: "20px", lg: 0 },
         ml: { xs: "15px", sm: 0 },
+        flex: 1,
       }}
     >
       <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -102,7 +103,8 @@ function Product(props: HeaderMenuInterface) {
               lg: "275px",
               xl: "295px",
             },
-            height: { md: "130px", lg: "200px", xl: "200px" },
+            objectFit: "contain",
+            height: { md: "130px", sm: "150px", lg: "200px", xl: "200px" },
           }}
         />
       </Box>

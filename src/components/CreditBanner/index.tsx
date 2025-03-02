@@ -14,12 +14,12 @@ function CreditBanner() {
       <Box>
         <Typography
           sx={{
-            ml: { xs: "16%", sm: "36%", md: "39%", lg: "42.5%", xl: "44.9%" },
+            ml: { xs: "16%", sm: "36%", md: "39%", lg: "42.5%", xl: "44.6%" },
           }}
         >
           © Copyright | All Rights Reserved
         </Typography>
-        <Typography sx={{ ml: { xs: "44%", sm: "48.9%" } }}>
+        <Typography sx={{ ml: { xs: "44%", sm: "48.6%" } }}>
           M A Alim
         </Typography>{" "}
         <Typography
@@ -29,7 +29,7 @@ function CreditBanner() {
               sm: "32%",
               md: "36.1%",
               lg: "40.6%",
-              xl: "43.6%",
+              xl: "43.3%",
             },
           }}
         >

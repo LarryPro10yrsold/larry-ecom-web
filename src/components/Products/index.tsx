@@ -24,8 +24,8 @@ function Products(props: BannerInterface) {
       >
         Trending Products
       </Typography>{" "}
-      <RowOfProducts onAddToCart={onAddToCart} />
-      <RowOfProducts2 onAddToCart={onAddToCart} />
+      <RowOfProducts />
+      <RowOfProducts2 />
     </Box>
   );
 }

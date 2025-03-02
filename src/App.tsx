@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Box, createTheme, ThemeProvider, CssBaseline } from "@mui/material";
-import Header from "./components/Header";
-import Banner from "./components/Banner";
-import AllProducts from "./components/AllProducts";
+import { Route, Routes } from "react-router-dom";
+import Home from "./page/home";
+import Product from "./page/product";
+
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [numberOfProducts, setNumberOfProducts] = useState(0);
@@ -24,24 +25,20 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
-        sx={{
-          margin: "0px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          width: { sm: "100%" },
-        }}
-      >
-        <Header
-          isDarkMode={isDarkMode}
-          onToggleDarkMode={onToggleDarkMode}
-          numberOfProducts={numberOfProducts}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              isDarkMode={isDarkMode}
+              onToggleDarkMode={onToggleDarkMode}
+              numberOfProducts={numberOfProducts}
+              handleAddToCart={handleAddToCart}
+            />
+          }
         />
-
-        <Banner isDarkMode={isDarkMode} />
-        <AllProducts isDarkMode={isDarkMode} onAddToCart={handleAddToCart} />
-      </Box>
+        <Route path="/product" element={<Product />} />
+      </Routes>
     </ThemeProvider>
   );
 }
