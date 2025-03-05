@@ -2,9 +2,10 @@ import { Box, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 interface ReviewInterface {
   username: string;
+  review: string;
 }
 function Review(props: ReviewInterface) {
-  const { username } = props;
+  const { username, review } = props;
   return (
     <Box sx={{ py: "8px" }}>
       <Typography sx={{ fontWeight: "510", fontSize: "18px" }}>
@@ -23,8 +24,17 @@ function Review(props: ReviewInterface) {
           5
         </Typography>
       </Typography>
-      <Typography>
-        bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla{" "}
+      <Typography
+        sx={{
+          width: {
+            sm: "246.5px",
+            md: "353px",
+            lg: "423px",
+            xl: "493px",
+          },
+        }}
+      >
+        {review}{" "}
       </Typography>
     </Box>
   );

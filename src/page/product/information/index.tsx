@@ -6,7 +6,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 function Information() {
   return (
-    <Box sx={{ width: "493px" }}>
+    <Box sx={{ width: { md: "340px", lg: "493px" } }}>
       <Typography sx={{ fontWeight: "510", fontSize: "1.7rem" }}>
         Legendary Turtle
       </Typography>
@@ -80,17 +80,15 @@ function Information() {
             About the product
           </Typography>{" "}
           <Typography sx={{ textAlign: "left", fontWeight: "semi bold" }}>
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla
+            Master Oogway is an ancient and wise tortoise, the legendary Grand
+            Master of the Jade Palace in Kung Fu Panda. Known for his deep
+            wisdom, calm demeanor, and mastery of kung fu, he serves as a mentor
+            to Master Shifu and the Furious Five. Oogway believes in destiny and
+            the power of inner peace, often speaking in profound yet cryptic
+            sayings. His most famous lesson—"Yesterday is history, tomorrow is a
+            mystery, but today is a gift. That is why it is called the
+            present."—continues to inspire generations. Even after ascending to
+            the Spirit Realm, his teachings live on. 🐢✨
           </Typography>
         </Box>
         <Box sx={{ display: "flex", gap: "5px", mt: "10px" }}>
