@@ -4,11 +4,32 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PaidIcon from "@mui/icons-material/Paid";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-function Information() {
+interface InformationInterface {
+  originalPrice: number;
+  discountPrice: number;
+  title: string;
+  description: string;
+  brand: string;
+  stock: number;
+  essence: string;
+}
+
+function Information(props: InformationInterface) {
+  const {
+    title,
+    originalPrice,
+    discountPrice,
+    description,
+    brand,
+    stock,
+    essence,
+  } = props;
+  const calculateDiscountPercentage =
+    ((originalPrice - discountPrice) / originalPrice) * 100;
   return (
     <Box sx={{ width: { md: "340px", lg: "493px" } }}>
       <Typography sx={{ fontWeight: "510", fontSize: "1.7rem" }}>
-        Legendary Turtle
+        {title}
       </Typography>
       <Box sx={{}}>
         <Typography
@@ -32,7 +53,7 @@ function Information() {
               lineHeight: "28px",
             }}
           >
-            $25
+            ${discountPrice}
           </Typography>
           <Box
             sx={{
@@ -48,7 +69,7 @@ function Information() {
                 color: "black",
               }}
             >
-              $50
+              ${originalPrice}
             </Typography>
             <Typography
               sx={{
@@ -60,7 +81,7 @@ function Information() {
                 },
               }}
             >
-              -50%
+              -{calculateDiscountPercentage}%
             </Typography>
           </Box>
         </Box>{" "}
@@ -71,8 +92,8 @@ function Information() {
             <Typography sx={{ fontWeight: "510" }}>Stock</Typography>
           </Box>{" "}
           <Box>
-            <Typography>legend</Typography> <Typography>turtles</Typography>{" "}
-            <Typography>500</Typography>
+            <Typography>{brand}</Typography> <Typography>{essence}</Typography>{" "}
+            <Typography>{stock}</Typography>
           </Box>
         </Box>{" "}
         <Box sx={{ mt: "11px" }}>
@@ -80,15 +101,7 @@ function Information() {
             About the product
           </Typography>{" "}
           <Typography sx={{ textAlign: "left", fontWeight: "semi bold" }}>
-            Master Oogway is an ancient and wise tortoise, the legendary Grand
-            Master of the Jade Palace in Kung Fu Panda. Known for his deep
-            wisdom, calm demeanor, and mastery of kung fu, he serves as a mentor
-            to Master Shifu and the Furious Five. Oogway believes in destiny and
-            the power of inner peace, often speaking in profound yet cryptic
-            sayings. His most famous lesson—"Yesterday is history, tomorrow is a
-            mystery, but today is a gift. That is why it is called the
-            present."—continues to inspire generations. Even after ascending to
-            the Spirit Realm, his teachings live on. 🐢✨
+            {description}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", gap: "5px", mt: "10px" }}>

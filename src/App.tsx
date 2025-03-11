@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Box, createTheme, ThemeProvider, CssBaseline } from "@mui/material";
+import { useState } from "react";
+import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import Home from "./page/home";
-import Product from "./page/product";
+import ProductDetail from "./page/product";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -37,7 +37,7 @@ function App() {
             />
           }
         />
-        <Route path="/product" element={<Product />} />
+        <Route path="/product" element={<ProductDetail />} />
       </Routes>
     </ThemeProvider>
   );

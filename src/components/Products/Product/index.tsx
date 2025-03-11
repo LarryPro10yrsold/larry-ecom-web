@@ -13,7 +13,7 @@ interface HeaderMenuInterface {
   onAddToCart?: () => void;
   image: string;
   rates: number;
-  name: string;
+  name: any;
   originalPrice: number;
   discountPrice: number;
   type: string;

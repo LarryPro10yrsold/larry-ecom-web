@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 interface ReviewInterface {
   username: string;
-  review: string;
+  review: any;
 }
 function Review(props: ReviewInterface) {
   const { username, review } = props;
