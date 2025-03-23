@@ -5,8 +5,7 @@ import PaidIcon from "@mui/icons-material/Paid";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 interface InformationInterface {
-  originalPrice: number;
-  discountPrice: number;
+  discountPercentage: any;
   title: string;
   description: string;
   brand: string;
@@ -15,17 +14,8 @@ interface InformationInterface {
 }
 
 function Information(props: InformationInterface) {
-  const {
-    title,
-    originalPrice,
-    discountPrice,
-    description,
-    brand,
-    stock,
-    essence,
-  } = props;
-  const calculateDiscountPercentage =
-    ((originalPrice - discountPrice) / originalPrice) * 100;
+  const { title, description, brand, stock, essence, discountPercentage } =
+    props;
   return (
     <Box sx={{ width: { md: "340px", lg: "493px" } }}>
       <Typography sx={{ fontWeight: "510", fontSize: "1.7rem" }}>
@@ -53,7 +43,7 @@ function Information(props: InformationInterface) {
               lineHeight: "28px",
             }}
           >
-            ${discountPrice}
+            $9.27
           </Typography>
           <Box
             sx={{
@@ -69,7 +59,7 @@ function Information(props: InformationInterface) {
                 color: "black",
               }}
             >
-              ${originalPrice}
+              $9.99
             </Typography>
             <Typography
               sx={{
@@ -81,7 +71,7 @@ function Information(props: InformationInterface) {
                 },
               }}
             >
-              -{calculateDiscountPercentage}%
+              -{discountPercentage}%
             </Typography>
           </Box>
         </Box>{" "}
