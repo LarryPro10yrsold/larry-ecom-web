@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { StrictMode, useState } from "react";
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import Home from "./page/home";
@@ -23,23 +23,25 @@ function App() {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              isDarkMode={isDarkMode}
-              onToggleDarkMode={onToggleDarkMode}
-              numberOfProducts={numberOfProducts}
-              handleAddToCart={handleAddToCart}
-            />
-          }
-        />
-        <Route path="/product" element={<ProductDetail />} />
-      </Routes>
-    </ThemeProvider>
+    <StrictMode>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                isDarkMode={isDarkMode}
+                onToggleDarkMode={onToggleDarkMode}
+                numberOfProducts={numberOfProducts}
+                handleAddToCart={handleAddToCart}
+              />
+            }
+          />
+          <Route path="/product" element={<ProductDetail />} />
+        </Routes>
+      </ThemeProvider>
+    </StrictMode>
   );
 }
 

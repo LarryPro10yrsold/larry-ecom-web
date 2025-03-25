@@ -1,10 +1,11 @@
 import { Box, Divider, Typography } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Review from "./review";
 import Information from "./information";
 import CreditBanner from "../../components/CreditBanner";
 import Product from "../../components/Products/Product";
+import axios from "axios";
 
 const product = {
   image: {
@@ -153,10 +154,25 @@ const product = {
 function ProductDetail() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [numberOfProducts, setNumberOfProducts] = useState(0);
+  const [productDetail, setProductDetail] = useState<any>({});
 
   const onToggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
+
+  useEffect(() => {
+    // 1. Fetch the product from the api
+    // 2. set the data to the state productDetail by using setProductDetail
+    // 3. rendering all the fields inside productDetail into the UI
+    // Example: src={productDetail.thumbnail}
+    // Example: title={productDetail.title}
+    console.log("working");
+    axios.get("https://dummyjson.com/products/1").then((res: { data: any }) => {
+      console.log(res.data);
+
+      setProductDetail(res.data);
+    });
+  }, []);
 
   return (
     <Box>
@@ -184,28 +200,35 @@ function ProductDetail() {
         >
           <Box sx={{ width: { md: "300px", lg: "493px" }, mt: "100px" }}>
             <img
-              src={product.image.src}
+              src={productDetail.thumbnail}
               alt={product.image.alt}
               style={{ width: "100%" }}
             />
           </Box>
           <Information
-            description={product.information.description}
-            originalPrice={product.information.originalPrice}
-            title={product.information.title}
-            discountPrice={product.information.discountPrice}
-            brand={product.information.brand}
-            stock={product.information.stock}
-            essence={product.information.essence}
+            description={productDetail.description}
+            title={productDetail.title}
+            discountPercentage={productDetail.discountPercentage}
+            brand={productDetail.brand}
+            stock={productDetail.stock}
+            essence={productDetail.category}
           />{" "}
         </Box>
         <Box sx={{ py: { xs: "20px", sm: 0 } }}>
           <Typography sx={{ fontWeight: "510", fontSize: "1.7rem" }}>
             Reviews
           </Typography>
-          {product.reviews.map((review) => {
-            return <Review username={review.username} review={review.review} />;
-          })}
+          {product.reviews.map(
+            (review: { username: string; review: unknown }) => {
+              return (
+                <Review
+                  username={review.username}
+                  review={review.review}
+                  rates={productDetail.reviews.rating}
+                />
+              );
+            }
+          )}
         </Box>
       </Box>
       <Box
@@ -223,18 +246,27 @@ function ProductDetail() {
             New Arrivals
           </Typography>{" "}
           <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-            {product.newArrivals.map((newArrival) => {
-              return (
-                <Product
-                  name={newArrival.name}
-                  image={newArrival.image}
-                  rates={newArrival.rates}
-                  originalPrice={newArrival.price}
-                  discountPrice={newArrival.discountPrice}
-                  type={newArrival.type}
-                />
-              );
-            })}
+            {product.newArrivals.map(
+              (newArrival: {
+                name: unknown;
+                image: string;
+                rates: number;
+                price: number;
+                discountPrice: number;
+                type: string;
+              }) => {
+                return (
+                  <Product
+                    name={newArrival.name}
+                    image={newArrival.image}
+                    rates={newArrival.rates}
+                    originalPrice={newArrival.price}
+                    discountPrice={newArrival.discountPrice}
+                    type={newArrival.type}
+                  />
+                );
+              }
+            )}
           </Box>
         </Box>
       </Box>{" "}
@@ -248,18 +280,27 @@ function ProductDetail() {
             Featured Items
           </Typography>{" "}
           <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-            {product.featuredItems.map((featuredItem) => {
-              return (
-                <Product
-                  name={featuredItem.name}
-                  image={featuredItem.image}
-                  rates={featuredItem.rates}
-                  originalPrice={featuredItem.price}
-                  discountPrice={featuredItem.discountPrice}
-                  type={featuredItem.type}
-                />
-              );
-            })}
+            {product.featuredItems.map(
+              (featuredItem: {
+                name: unknown;
+                image: string;
+                rates: number;
+                price: number;
+                discountPrice: number;
+                type: string;
+              }) => {
+                return (
+                  <Product
+                    name={featuredItem.name}
+                    image={featuredItem.image}
+                    rates={featuredItem.rates}
+                    originalPrice={featuredItem.price}
+                    discountPrice={featuredItem.discountPrice}
+                    type={featuredItem.type}
+                  />
+                );
+              }
+            )}
           </Box>
         </Box>
       </Box>{" "}
@@ -273,18 +314,27 @@ function ProductDetail() {
             Best Sellers
           </Typography>{" "}
           <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-            {product.bestSellers.map((bestSeller) => {
-              return (
-                <Product
-                  name={bestSeller.name}
-                  image={bestSeller.image}
-                  rates={bestSeller.rates}
-                  originalPrice={bestSeller.price}
-                  discountPrice={bestSeller.discountPrice}
-                  type={bestSeller.type}
-                />
-              );
-            })}
+            {product.bestSellers.map(
+              (bestSeller: {
+                name: unknown;
+                image: string;
+                rates: number;
+                price: number;
+                discountPrice: number;
+                type: string;
+              }) => {
+                return (
+                  <Product
+                    name={bestSeller.name}
+                    image={bestSeller.image}
+                    rates={bestSeller.rates}
+                    originalPrice={bestSeller.price}
+                    discountPrice={bestSeller.discountPrice}
+                    type={bestSeller.type}
+                  />
+                );
+              }
+            )}
           </Box>
         </Box>
       </Box>{" "}
@@ -298,18 +348,27 @@ function ProductDetail() {
             Limited Edition
           </Typography>{" "}
           <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-            {product.limitedEdition.map((limitedEdition) => {
-              return (
-                <Product
-                  name={limitedEdition.name}
-                  image={limitedEdition.image}
-                  rates={limitedEdition.rates}
-                  originalPrice={limitedEdition.price}
-                  discountPrice={limitedEdition.discountPrice}
-                  type={limitedEdition.type}
-                />
-              );
-            })}
+            {product.limitedEdition.map(
+              (limitedEdition: {
+                name: unknown;
+                image: string;
+                rates: number;
+                price: number;
+                discountPrice: number;
+                type: string;
+              }) => {
+                return (
+                  <Product
+                    name={limitedEdition.name}
+                    image={limitedEdition.image}
+                    rates={limitedEdition.rates}
+                    originalPrice={limitedEdition.price}
+                    discountPrice={limitedEdition.discountPrice}
+                    type={limitedEdition.type}
+                  />
+                );
+              }
+            )}
           </Box>
         </Box>
       </Box>{" "}
@@ -323,18 +382,27 @@ function ProductDetail() {
             Fan Favourites
           </Typography>{" "}
           <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-            {product.fanFavorites.map((fanFavorite) => {
-              return (
-                <Product
-                  name={fanFavorite.name}
-                  image={fanFavorite.image}
-                  rates={fanFavorite.rates}
-                  originalPrice={fanFavorite.price}
-                  discountPrice={fanFavorite.discountPrice}
-                  type={fanFavorite.type}
-                />
-              );
-            })}
+            {product.fanFavorites.map(
+              (fanFavorite: {
+                name: unknown;
+                image: string;
+                rates: number;
+                price: number;
+                discountPrice: number;
+                type: string;
+              }) => {
+                return (
+                  <Product
+                    name={fanFavorite.name}
+                    image={fanFavorite.image}
+                    rates={fanFavorite.rates}
+                    originalPrice={fanFavorite.price}
+                    discountPrice={fanFavorite.discountPrice}
+                    type={fanFavorite.type}
+                  />
+                );
+              }
+            )}
           </Box>
         </Box>
       </Box>{" "}
