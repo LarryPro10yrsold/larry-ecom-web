@@ -218,17 +218,15 @@ function ProductDetail() {
           <Typography sx={{ fontWeight: "510", fontSize: "1.7rem" }}>
             Reviews
           </Typography>
-          {product.reviews.map(
-            (review: { username: string; review: unknown }) => {
-              return (
-                <Review
-                  username={review.username}
-                  review={review.review}
-                  rates={productDetail.reviews.rating}
-                />
-              );
-            }
-          )}
+          {product.reviews.map((review) => {
+            return (
+              <Review
+                username={productDetail.reviews.reviewerName}
+                review={productDetail.reviews.comment}
+                rates={productDetail.reviews}
+              />
+            );
+          })}
         </Box>
       </Box>
       <Box
