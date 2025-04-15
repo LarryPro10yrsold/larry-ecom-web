@@ -38,7 +38,7 @@ function App() {
               />
             }
           />
-          <Route path="/product" element={<ProductDetail />} />
+          <Route path="/product/:productId" element={<ProductDetail />} />
         </Routes>
       </ThemeProvider>
     </StrictMode>

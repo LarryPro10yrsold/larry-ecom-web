@@ -20,20 +20,14 @@ function Review(props: ReviewInterface) {
         stars.push(<StarBorderIcon key={i} />);
       }
     }
-    return (
-      <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>{stars}</Box>
-    );
+    return <Box sx={{ display: "flex", color: "#FFC300 " }}>{stars}</Box>;
   };
   return (
     <Box sx={{ py: "8px" }}>
       <Typography sx={{ fontWeight: "510", fontSize: "18px" }}>
         {username}
       </Typography>
-      <Typography>
-        {" "}
-        {renderRates()}
-        {rates}
-      </Typography>
+      <Typography sx={{}}> {renderRates()}</Typography>
       <Typography
         sx={{
           width: {
