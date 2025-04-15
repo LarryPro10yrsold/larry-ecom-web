@@ -13,6 +13,9 @@ function ProductDetail() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [numberOfProducts, setNumberOfProducts] = useState(0);
   const [productDetail, setProductDetail] = useState<any>({});
+  const [similarProducts, setSimilarProducts] = useState([]);
+
+  console.log("product detail");
 
   const onToggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -28,11 +31,16 @@ function ProductDetail() {
     axios
       .get(`https://dummyjson.com/products/${productId}`)
       .then((res: { data: any }) => {
-        console.log(res.data);
-
         setProductDetail(res.data);
       });
   }, []);
+  useEffect(() => {
+    axios
+      .get(`https://dummyjson.com/products/category/beauty`)
+      .then((res: { data: any }) => {
+        setSimilarProducts(res.data.products); // Access the 'products' array!
+      });
+  }, []); // Still an empty dependency array - let's address this next
 
   return (
     <Box>
@@ -61,7 +69,7 @@ function ProductDetail() {
           <Box sx={{ width: { md: "300px", lg: "493px" }, mt: "100px" }}>
             <img
               src={productDetail.thumbnail}
-              alt={product.image.alt}
+              alt={"image not loading"}
               style={{ width: "100%" }}
             />
           </Box>
@@ -108,23 +116,22 @@ function ProductDetail() {
             sx={{ ml: { xs: "15px", sm: 0 } }}
           >
             Similar Products
-          </Typography>{" "}
+          </Typography>
           <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-            {productId.SimilarProducts.map(() => {
-              return (
-                <Product
-                  name={newArrival.name}
-                  image={newArrival.image}
-                  rates={newArrival.rates}
-                  originalPrice={newArrival.price}
-                  discountPrice={newArrival.discountPrice}
-                  type={newArrival.type}
-                />
-              );
-            })}
+            {similarProducts.map((product: any) => (
+              <Product
+                key={product.id}
+                name={product.title}
+                image={product.thumbnail}
+                rates={product.rating}
+                originalPrice={product.price}
+                discountPrice={product.discountPercentage}
+                type={product.category}
+              />
+            ))}
           </Box>
         </Box>
-      </Box>{" "}
+      </Box>
       <CreditBanner />
     </Box>
   );
