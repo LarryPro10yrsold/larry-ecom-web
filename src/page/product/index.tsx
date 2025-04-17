@@ -127,6 +127,7 @@ function ProductDetail() {
                 originalPrice={product.price}
                 discountPrice={product.discountPercentage}
                 type={product.category}
+                id={product.id}
               />
             ))}
           </Box>

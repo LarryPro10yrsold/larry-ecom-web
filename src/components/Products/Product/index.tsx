@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { Box, Typography, Modal, Input } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
-import CloseIcon from "@mui/icons-material/Close";
-import EditNoteIcon from "@mui/icons-material/EditNote";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 interface HeaderMenuInterface {
   isDarkMode?: boolean;
@@ -17,6 +16,7 @@ interface HeaderMenuInterface {
   originalPrice: number;
   discountPrice: number;
   type: string;
+  id: number;
 }
 
 function Product(props: HeaderMenuInterface) {
@@ -27,32 +27,24 @@ function Product(props: HeaderMenuInterface) {
     originalPrice,
     discountPrice,
     type,
+    id,
     onAddToCart,
   } = props;
   const [numberOfProducts, setNumberOfProducts] = useState(0);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isPopupOpen2, setIsPopupOpen2] = useState(false);
+  const [similarProducts, setSimilarProducts] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`https://dummyjson.com/products/category/beauty`)
+      .then((res: { data: any }) => {
+        setSimilarProducts(res.data.products); // Access the 'products' array!
+      });
+  }, []);
 
   const handleAddToCart = () => {
     if (onAddToCart !== undefined) onAddToCart();
     setNumberOfProducts(numberOfProducts + 1);
-    setIsPopupOpen(true);
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
-  };
-  const closePopup2 = () => {
-    setIsPopupOpen2(false);
-  };
-  const handleRegister = () => {
-    setIsPopupOpen2(true);
-    setIsPopupOpen(false);
-  };
-  const HandleGoBack = () => {
-    setIsPopupOpen2(false);
-    setIsPopupOpen(true);
-  };
   const renderRates = () => {
     const stars = [];
     for (let i = 0; i <= 4; i++) {
@@ -181,191 +173,38 @@ function Product(props: HeaderMenuInterface) {
               </Typography>
             </Box>
           </Box>
-          <Box
-            onClick={handleAddToCart}
-            sx={{
-              py: "8px",
-              px: "16px",
-              color: "white",
-              backgroundColor: "rgb(236 72 153)",
-              borderRadius: "4px",
-              width: { sm: "43px", md: "43px", lg: "43px", xl: "43px" },
-              height: { md: "30px", lg: "30px", xl: "30px" },
-              display: "flex",
-              alignItems: "center",
-              justifyContent: { md: "none", lg: "center", xl: "center" },
-              cursor: "pointer",
-            }}
-          >
-            <ShoppingCartIcon
+          <Link to={`/product/${id}`}>
+            <Box
+              onClick={handleAddToCart}
               sx={{
-                fontSize: {
-                  xs: "15px",
-                  sm: "13px",
-                  md: "10px",
-                  lg: "15px",
-                  xl: "15px",
-                },
+                py: "8px",
+                px: "16px",
+                color: "white",
+                backgroundColor: "rgb(236 72 153)",
+                borderRadius: "4px",
+                width: { sm: "43px", md: "43px", lg: "43px", xl: "43px" },
+                height: { md: "30px", lg: "30px", xl: "30px" },
+                display: "flex",
+                alignItems: "center",
+                justifyContent: { md: "none", lg: "center", xl: "center" },
+                cursor: "pointer",
               }}
-            />
-          </Box>
+            >
+              <ShoppingCartIcon
+                sx={{
+                  fontSize: {
+                    xs: "15px",
+                    sm: "13px",
+                    md: "10px",
+                    lg: "15px",
+                    xl: "15px",
+                  },
+                }}
+              />
+            </Box>
+          </Link>
         </Box>
       </Box>
-      <Modal open={isPopupOpen} onClose={closePopup}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            width: 400,
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 4,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <Typography
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "20px",
-              fontWeight: "600",
-              justifyContent: "center",
-              position: "relative",
-            }}
-          >
-            <LockOpenIcon />
-            Login
-            <LockOpenIcon />{" "}
-            <CloseIcon
-              onClick={closePopup}
-              sx={{
-                position: "absolute",
-                bottom: "25px",
-                left: "330px",
-                cursor: "pointer",
-              }}
-            />
-          </Typography>{" "}
-          <Input
-            placeholder="Your username here..."
-            sx={{
-              border: "2px solid rgb(59 130 246)",
-              width: "336px",
-              px: "12px",
-              py: "2px",
-              "&.MuiInputBase-root:before": {
-                borderBottom: "none",
-              },
-              "&.MuiInputBase-root:after": {
-                borderBottom: "none",
-              },
-              mt: 2,
-              borderRadius: "4px",
-            }}
-          />{" "}
-          <Input
-            placeholder="Your password here..."
-            sx={{
-              border: "2px solid rgb(59 130 246)",
-              width: "336px",
-              px: "12px",
-              py: "2px",
-              "&.MuiInputBase-root:before": {
-                borderBottom: "none",
-              },
-              "&.MuiInputBase-root:after": {
-                borderBottom: "non   e",
-              },
-              mt: 2,
-              borderRadius: "4px",
-            }}
-          />
-          <Box
-            sx={{
-              bgcolor: "rgb(59 130 246)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              p: 1,
-              color: "white",
-              borderRadius: "2px",
-              mt: 1,
-            }}
-          >
-            Submit
-          </Box>
-          <Box sx={{ display: "flex", mt: 1, mx: 11 }}>
-            No Account?
-            <Typography
-              onClick={handleRegister}
-              sx={{ color: "rgb(59 130 246)", ml: "4px", cursor: "pointer" }}
-            >
-              {" "}
-              Register
-            </Typography>
-          </Box>{" "}
-          <Typography
-            sx={{
-              fontWeight: "600",
-              fontSize: "12px",
-              textDecoration: "underline",
-              mt: "20px",
-            }}
-          >
-            YOUR PURCHASE WILL BE COUNTED BUT IT WILL BE ANONYMOUS (fake)
-          </Typography>
-        </Box>
-      </Modal>{" "}
-      <Modal open={isPopupOpen2} onClose={closePopup2}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "40%",
-            left: "42%",
-            width: 400,
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
-          <Typography
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "20px",
-              fontWeight: "600",
-              justifyContent: "center",
-              position: "relative",
-              gap: "5px",
-            }}
-          >
-            <EditNoteIcon />
-            Register
-            <EditNoteIcon />{" "}
-            <CloseIcon
-              onClick={closePopup2}
-              sx={{
-                position: "absolute",
-                bottom: "25px",
-                left: "330px",
-                cursor: "pointer",
-              }}
-            />
-          </Typography>{" "}
-          <Box sx={{ mt: 1 }}>
-            This is a hobby project for development purpose only. No well suited
-            backend has been used here.
-            <Typography
-              onClick={HandleGoBack}
-              sx={{ color: "rgb(59 130 246)", cursor: "pointer" }}
-            >
-              {" "}
-              Go to login
-            </Typography>
-          </Box>
-        </Box>
-      </Modal>
     </Box>
   );
 }

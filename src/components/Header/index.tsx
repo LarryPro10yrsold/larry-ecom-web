@@ -1,7 +1,8 @@
-import { Box, Input, Modal, Typography } from "@mui/material";
+import { Box, Input, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderMenu from "./HeaderMenu";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
 interface HeaderInterface {
   isDarkMode: boolean;
@@ -39,6 +40,7 @@ function Header(props: HeaderInterface) {
           pl: { xs: "30px", sm: 0 },
         }}
       >
+        {" "}
         <Typography
           sx={{
             fontSize: {
@@ -50,9 +52,20 @@ function Header(props: HeaderInterface) {
             },
             fontWeight: "600",
             mr: { xs: "180px", sm: 0 },
+            color: "black",
           }}
         >
-          Shopify
+          <Link
+            to={"http://localhost:5173/"}
+            sx={{
+              textDecoration: "none",
+              color: "inherit",
+              cursor: "pointer",
+              // Add other Material UI styles here
+            }}
+          >
+            Shopify
+          </Link>{" "}
         </Typography>
         <Box
           sx={{
