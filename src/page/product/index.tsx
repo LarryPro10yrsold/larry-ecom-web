@@ -22,25 +22,22 @@ function ProductDetail() {
   };
 
   useEffect(() => {
-    // 1. Fetch the product from the api
-    // 2. set the data to the state productDetail by using setProductDetail
-    // 3. rendering all the fields inside productDetail into the UI
-    // Example: src={productDetail.thumbnail}
-    // Example: title={productDetail.title}
-    console.log("working");
+    console.log("Fetching product detail for ID:", productId);
     axios
       .get(`https://dummyjson.com/products/${productId}`)
       .then((res: { data: any }) => {
         setProductDetail(res.data);
+        console.log("Updated productDetail:", productDetail);
       });
-  }, []);
+  }, [productId]); // Fetch again when productId in URL changes
+
   useEffect(() => {
     axios
       .get(`https://dummyjson.com/products/category/beauty`)
       .then((res: { data: any }) => {
-        setSimilarProducts(res.data.products); // Access the 'products' array!
+        setSimilarProducts(res.data.products.slice(0, 4)); // Show first 4 similar products
       });
-  }, []); // Still an empty dependency array - let's address this next
+  }, []);
 
   return (
     <Box>
@@ -68,19 +65,19 @@ function ProductDetail() {
         >
           <Box sx={{ width: { md: "300px", lg: "493px" }, mt: "100px" }}>
             <img
-              src={productDetail.thumbnail}
-              alt={"image not loading"}
+              src={productDetail?.thumbnail}
+              alt={productDetail?.title}
               style={{ width: "100%" }}
             />
           </Box>
           <Information
-            description={productDetail.description}
-            title={productDetail.title}
-            discountPercentage={productDetail.discountPercentage}
-            brand={productDetail.brand}
-            stock={productDetail.stock}
-            essence={productDetail.category}
-          />{" "}
+            description={productDetail?.description}
+            title={productDetail?.title}
+            discountPercentage={productDetail?.discountPercentage}
+            brand={productDetail?.brand}
+            stock={productDetail?.stock}
+            essence={productDetail?.category}
+          />
         </Box>
         <Box sx={{ py: { xs: "20px", sm: 0 } }}>
           <Typography sx={{ fontWeight: "510", fontSize: "1.7rem" }}>
@@ -107,7 +104,7 @@ function ProductDetail() {
         sx={{ display: "flex", marginTop: "32px", justifyContent: "center" }}
       >
         <Divider sx={{ width: "100%" }} />
-      </Box>{" "}
+      </Box>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Box sx={{ mt: "32px" }}>
           <Typography

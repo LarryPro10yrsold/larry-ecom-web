@@ -59,6 +59,7 @@ function Product(props: HeaderMenuInterface) {
     return (
       <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>{stars}</Box>
     );
+    window.location.reload();
   };
 
   const calculateDiscountPercentage =
