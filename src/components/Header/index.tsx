@@ -52,16 +52,16 @@ function Header(props: HeaderInterface) {
             },
             fontWeight: "600",
             mr: { xs: "180px", sm: 0 },
-            color: "black",
+            color: isDarkMode ? "white" : "black",
+            cursor: "pointer",
           }}
         >
           <Link
             to={"http://localhost:5173/"}
-            sx={{
+            style={{
               textDecoration: "none",
               color: "inherit",
               cursor: "pointer",
-              // Add other Material UI styles here
             }}
           >
             Shopify

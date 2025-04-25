@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Fade, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
@@ -14,9 +14,9 @@ interface HeaderMenuInterface {
   rates: number;
   name: any;
   originalPrice: number;
-  discountPrice: number;
   type: string;
   id: number;
+  discountPercentage: number;
 }
 
 function Product(props: HeaderMenuInterface) {
@@ -25,10 +25,10 @@ function Product(props: HeaderMenuInterface) {
     rates,
     name,
     originalPrice,
-    discountPrice,
     type,
     id,
     onAddToCart,
+    discountPercentage,
   } = props;
   const [numberOfProducts, setNumberOfProducts] = useState(0);
   const [similarProducts, setSimilarProducts] = useState([]);
@@ -45,6 +45,11 @@ function Product(props: HeaderMenuInterface) {
     setNumberOfProducts(numberOfProducts + 1);
   };
 
+  const calculateDiscountPrice =
+    originalPrice - (originalPrice / 100) * discountPercentage;
+
+  const formattedPrice = calculateDiscountPrice.toFixed(2);
+
   const renderRates = () => {
     const stars = [];
     for (let i = 0; i <= 4; i++) {
@@ -59,11 +64,7 @@ function Product(props: HeaderMenuInterface) {
     return (
       <Box sx={{ display: "flex", mx: "28px", color: "#FFC300 " }}>{stars}</Box>
     );
-    window.location.reload();
   };
-
-  const calculateDiscountPercentage =
-    ((originalPrice - discountPrice) / originalPrice) * 100;
 
   return (
     <Box
@@ -83,23 +84,41 @@ function Product(props: HeaderMenuInterface) {
         flex: 1,
       }}
     >
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Box
-          component="img"
-          src={image}
-          alt="e"
-          sx={{
-            width: {
-              xs: "300px",
-              sm: "240px",
-              md: "200px",
-              lg: "275px",
-              xl: "295px",
-            },
-            objectFit: "contain",
-            height: { md: "130px", sm: "150px", lg: "200px", xl: "200px" },
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          transition: "transform 0.3s ease",
+          ":hover": {
+            transform: "scale(1.25)",
+          },
+        }}
+      >
+        <Link
+          to={`/product/${id}`}
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+            cursor: "pointer",
           }}
-        />
+        >
+          <Box
+            component="img"
+            src={image}
+            alt="e"
+            sx={{
+              width: {
+                xs: "300px",
+                sm: "240px",
+                md: "200px",
+                lg: "275px",
+                xl: "295px",
+              },
+              objectFit: "contain",
+              height: { md: "130px", sm: "150px", lg: "200px", xl: "200px" },
+            }}
+          />
+        </Link>
       </Box>
       <Box sx={{ mx: { md: "5px" } }}>
         <Typography
@@ -110,15 +129,27 @@ function Product(props: HeaderMenuInterface) {
           }}
         >
           {type}
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: "18px",
-            px: { sm: "0px", md: "0px", lg: "26px", xl: "32px" },
+        </Typography>{" "}
+        <Link
+          to={`/product/${id}`}
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+            cursor: "pointer",
           }}
         >
-          {name}
-        </Typography>
+          <Typography
+            sx={{
+              fontSize: "18px",
+              px: { sm: "0px", md: "0px", lg: "26px", xl: "32px" },
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
+          >
+            {name}
+          </Typography>
+        </Link>
         <Box
           sx={{
             display: "flex",
@@ -150,7 +181,7 @@ function Product(props: HeaderMenuInterface) {
                 lineHeight: "28px",
               }}
             >
-              ${discountPrice}
+              ${formattedPrice}
             </Typography>
             <Box
               sx={{
@@ -170,7 +201,7 @@ function Product(props: HeaderMenuInterface) {
               <Typography
                 sx={{ fontSize: { md: "12px", lg: "16px", xl: "16px" } }}
               >
-                -{calculateDiscountPercentage}%
+                {discountPercentage}%
               </Typography>
             </Box>
           </Box>
@@ -189,6 +220,10 @@ function Product(props: HeaderMenuInterface) {
                 alignItems: "center",
                 justifyContent: { md: "none", lg: "center", xl: "center" },
                 cursor: "pointer",
+                transition: "background-color 0.5s",
+                ":hover": {
+                  backgroundColor: "#008bff",
+                },
               }}
             >
               <ShoppingCartIcon

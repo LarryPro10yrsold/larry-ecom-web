@@ -35,12 +35,17 @@ function ProductDetail() {
     axios
       .get(`https://dummyjson.com/products/category/beauty`)
       .then((res: { data: any }) => {
-        setSimilarProducts(res.data.products.slice(0, 4)); // Show first 4 similar products
+        setSimilarProducts(res.data.products); // Show first 4 similar products
       });
   }, []);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        backgroundColor: isDarkMode ? "rgb(30 41 59)" : "white",
+        color: isDarkMode ? "white" : "black",
+      }}
+    >
       <Header
         isDarkMode={isDarkMode}
         onToggleDarkMode={onToggleDarkMode}
@@ -54,6 +59,7 @@ function ProductDetail() {
           fontWeight: "500",
           gap: { xs: "15px", sm: "15px", md: "4px" },
           px: { xs: "15px", sm: 0 },
+          color: isDarkMode ? "white" : "black",
         }}
       >
         <Box
@@ -101,7 +107,12 @@ function ProductDetail() {
         </Box>
       </Box>
       <Box
-        sx={{ display: "flex", marginTop: "32px", justifyContent: "center" }}
+        sx={{
+          display: "flex",
+          marginTop: "32px",
+          justifyContent: "center",
+          color: isDarkMode ? "white" : "black",
+        }}
       >
         <Divider sx={{ width: "100%" }} />
       </Box>
@@ -115,14 +126,14 @@ function ProductDetail() {
             Similar Products
           </Typography>
           <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-            {similarProducts.map((product: any) => (
+            {similarProducts.slice().map((product: any) => (
               <Product
                 key={product.id}
                 name={product.title}
                 image={product.thumbnail}
                 rates={product.rating}
                 originalPrice={product.price}
-                discountPrice={product.discountPercentage}
+                discountPercentage={product.discountPercentage}
                 type={product.category}
                 id={product.id}
               />

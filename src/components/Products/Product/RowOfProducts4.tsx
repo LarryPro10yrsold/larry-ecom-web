@@ -7,7 +7,7 @@ function RowOfProducts() {
   const [similarProducts, setSimilarProducts] = useState([]);
   useEffect(() => {
     axios
-      .get(`https://dummyjson.com/products/category/beauty`)
+      .get(`https://dummyjson.com/products?limit=24`)
       .then((res: { data: any }) => {
         setSimilarProducts(res.data.products);
       });
@@ -15,13 +15,13 @@ function RowOfProducts() {
 
   return (
     <Box sx={{ display: { xs: "block", sm: "flex" }, gap: "18px", my: "16px" }}>
-      {similarProducts.slice(0, 4).map((product: any) => (
+      {similarProducts.slice(12, 16).map((product: any) => (
         <Product
           image={product.thumbnail}
           rates={product.rating}
           name={product.title}
           originalPrice={product.price}
-          discountPrice={product.discountPercentage}
+          discountPercentage={product.discountPercentage}
           type={product.category}
           id={product.id}
         />
