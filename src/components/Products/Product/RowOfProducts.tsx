@@ -1,21 +1,24 @@
 import { Box } from "@mui/material";
 import Product from ".";
-import { useEffect, useState } from "react";
-import axios from "axios";
+interface ProductInterface {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+}
+interface RowOfProductsProps {
+  isDarkMode: boolean;
+  onAddToCart: () => void;
+  products: ProductInterface[];
+}
+function RowOfProducts(props: RowOfProductsProps) {
+  const { isDarkMode, onAddToCart, products } = props;
 
-function RowOfProducts() {
-  const [similarProducts, setSimilarProducts] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`https://dummyjson.com/products/category/beauty`)
-      .then((res: { data: any }) => {
-        setSimilarProducts(res.data.products);
-      });
-  }, []);
+  const finalRowOfProduct = products.slice(0, 4);
 
   return (
     <Box sx={{ display: { xs: "block", sm: "flex" }, gap: "18px", my: "16px" }}>
-      {similarProducts.slice(0, 4).map((product: any) => (
+      {finalRowOfProduct.map((product: any) => (
         <Product
           image={product.thumbnail}
           rates={product.rating}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Fade, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
@@ -32,7 +32,10 @@ function Product(props: HeaderMenuInterface) {
   } = props;
   const [numberOfProducts, setNumberOfProducts] = useState(0);
   const [similarProducts, setSimilarProducts] = useState([]);
+
+  // Get the product data from the apis
   useEffect(() => {
+    // Axios is a popular JavaScript library used for making HTTP requests from a web browser or Node. js. It simplifies the process of sending asynchronous HTTP requests to a server, and also handles the response.
     axios
       .get(`https://dummyjson.com/products/category/beauty`)
       .then((res: { data: any }) => {
@@ -40,6 +43,7 @@ function Product(props: HeaderMenuInterface) {
       });
   }, []);
 
+  //
   const handleAddToCart = () => {
     if (onAddToCart !== undefined) onAddToCart();
     setNumberOfProducts(numberOfProducts + 1);

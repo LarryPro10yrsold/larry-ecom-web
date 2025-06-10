@@ -15,7 +15,7 @@ function ProductDetail() {
   const [productDetail, setProductDetail] = useState<any>({});
   const [similarProducts, setSimilarProducts] = useState([]);
 
-  console.log("product detail");
+  // console.log("product detail");
 
   const onToggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -29,15 +29,16 @@ function ProductDetail() {
         setProductDetail(res.data);
         console.log("Updated productDetail:", productDetail);
       });
-  }, [productId]); // Fetch again when productId in URL changes
+  }, [productId]);
 
   useEffect(() => {
     axios
       .get(`https://dummyjson.com/products/category/beauty`)
       .then((res: { data: any }) => {
-        setSimilarProducts(res.data.products); // Show first 4 similar products
+        setSimilarProducts(res.data.products);
       });
-  }, []);
+    console.log("calling");
+  }, [productId]);
 
   return (
     <Box
@@ -128,14 +129,14 @@ function ProductDetail() {
           <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
             {similarProducts.slice().map((product: any) => (
               <Product
-                key={product.id}
-                name={product.title}
-                image={product.thumbnail}
-                rates={product.rating}
-                originalPrice={product.price}
-                discountPercentage={product.discountPercentage}
-                type={product.category}
-                id={product.id}
+                key={product?.id}
+                name={product?.title}
+                image={product?.thumbnail}
+                rates={product?.rating}
+                originalPrice={product?.price}
+                discountPercentage={product?.discountPercentage}
+                type={product?.category}
+                id={product?.id}
               />
             ))}
           </Box>

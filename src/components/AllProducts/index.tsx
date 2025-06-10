@@ -1,18 +1,28 @@
 import { Box, Typography } from "@mui/material";
-import Products from "../Products";
 import Offer from "../Offer";
 import RowOfProducts3 from "../Products/Product/RowOfProducts3";
 import RowOfProducts4 from "../Products/Product/RowOfProducts4";
 import AdditionalOptions from "../AdditionalOptions";
 import CreditBanner from "../CreditBanner";
+import RowOfProducts2 from "../Products/Product/RowOfProducts2";
+import RowOfProducts from "../Products/Product/RowOfProducts";
 
-interface BannerInterface {
+interface AllProductsProps {
   isDarkMode: boolean;
   onAddToCart: () => void;
+  products: ProductInterface[];
 }
+interface ProductInterface {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  thumbnail: string;
+  images: string[];
+}
+function AllProducts(props: AllProductsProps) {
+  const { isDarkMode, onAddToCart, products } = props;
 
-function AllProducts(props: BannerInterface) {
-  const { isDarkMode, onAddToCart } = props;
   return (
     <Box
       sx={{
@@ -28,7 +38,23 @@ function AllProducts(props: BannerInterface) {
           mt: "32px",
         }}
       >
-        <Products onAddToCart={onAddToCart} isDarkMode={false} />
+        <Typography
+          fontSize="36px"
+          fontWeight="600"
+          sx={{ ml: { xs: "15px", sm: 0 } }}
+        >
+          Trending Products
+        </Typography>{" "}
+        <RowOfProducts
+          products={products}
+          isDarkMode={isDarkMode}
+          onAddToCart={onAddToCart}
+        />
+        <RowOfProducts2
+          products={products}
+          isDarkMode={isDarkMode}
+          onAddToCart={onAddToCart}
+        />
       </Box>
       <Offer isDarkMode={isDarkMode} />
       <Box
@@ -44,8 +70,16 @@ function AllProducts(props: BannerInterface) {
         >
           New Arrivals
         </Typography>
-        <RowOfProducts3 onAddToCart={onAddToCart} />
-        <RowOfProducts4 onAddToCart={onAddToCart} />
+        <RowOfProducts3
+          products={products}
+          isDarkMode={isDarkMode}
+          onAddToCart={onAddToCart}
+        />
+        <RowOfProducts4
+          products={products}
+          isDarkMode={isDarkMode}
+          onAddToCart={onAddToCart}
+        />
       </Box>{" "}
       <CreditBanner />
     </Box>
