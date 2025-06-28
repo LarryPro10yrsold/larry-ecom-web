@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Review from "./review";
 import Information from "./information";
 import CreditBanner from "../../components/CreditBanner";
-import Product from "../../components/Products/Product";
+import Product from "../../components/Products/Product/";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -12,8 +12,23 @@ function ProductDetail() {
   const { productId } = useParams();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [numberOfProducts, setNumberOfProducts] = useState(0);
-  const [productDetail, setProductDetail] = useState<any>({});
-  const [similarProducts, setSimilarProducts] = useState([]);
+  const [productDetail, setProductDetail] = useState<{
+    description: string;
+    discountPercentage: unknown;
+    brand: string;
+    stock: number;
+    reviews: {
+      reviewerName: string;
+      comment: string;
+      rating: number;
+    }[];
+    category: string;
+    thumbnail: string;
+    title: string;
+  } | null>(null);
+  const [similarProducts, setSimilarProducts] = useState<
+    { category: string; product: string }[]
+  >([]);
 
   // console.log("product detail");
 
@@ -32,13 +47,20 @@ function ProductDetail() {
   }, [productId]);
 
   useEffect(() => {
-    axios
-      .get(`https://dummyjson.com/products/category/beauty`)
-      .then((res: { data: any }) => {
-        setSimilarProducts(res.data.products);
-      });
-    console.log("calling");
-  }, [productId]);
+    if (productDetail?.category) {
+      axios
+        .get(
+          `https://dummyjson.com/products?limit=24&category=${productDetail?.category}`
+        )
+        .then((res: { data: any }) => {
+          setSimilarProducts(res.data.products);
+        });
+      console.log(productDetail?.category);
+    }
+  }, [productDetail?.category]);
+  const filteredProducts = similarProducts.filter(
+    (product) => product.category === productDetail?.category
+  );
 
   return (
     <Box
@@ -78,12 +100,12 @@ function ProductDetail() {
             />
           </Box>
           <Information
-            description={productDetail?.description}
-            title={productDetail?.title}
-            discountPercentage={productDetail?.discountPercentage}
-            brand={productDetail?.brand}
-            stock={productDetail?.stock}
-            essence={productDetail?.category}
+            description={productDetail?.description ?? ""}
+            title={productDetail?.title ?? ""} // ?? = OR
+            discountPercentage={productDetail?.discountPercentage ?? ""}
+            brand={productDetail?.brand ?? ""}
+            stock={productDetail?.stock ?? 0}
+            essence={productDetail?.category ?? ""}
           />
         </Box>
         <Box sx={{ py: { xs: "20px", sm: 0 } }}>
@@ -127,7 +149,7 @@ function ProductDetail() {
             Similar Products
           </Typography>
           <Box sx={{ display: { sm: "flex", md: "flex" }, gap: "18px" }}>
-            {similarProducts.slice().map((product: any) => (
+            {filteredProducts.map((product: any) => (
               <Product
                 key={product?.id}
                 name={product?.title}

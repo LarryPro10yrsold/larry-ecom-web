@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 interface HeaderMenuInterface {
   isDarkMode?: boolean;
   onAddToCart?: () => void;
   image: string;
   rates: number;
-  name: any;
+  name: string;
   originalPrice: number;
   type: string;
   id: number;
@@ -20,34 +19,9 @@ interface HeaderMenuInterface {
 }
 
 function Product(props: HeaderMenuInterface) {
-  const {
-    image,
-    rates,
-    name,
-    originalPrice,
-    type,
-    id,
-    onAddToCart,
-    discountPercentage,
-  } = props;
+  const { image, rates, name, originalPrice, type, id, discountPercentage } =
+    props;
   const [numberOfProducts, setNumberOfProducts] = useState(0);
-  const [similarProducts, setSimilarProducts] = useState([]);
-
-  // Get the product data from the apis
-  useEffect(() => {
-    // Axios is a popular JavaScript library used for making HTTP requests from a web browser or Node. js. It simplifies the process of sending asynchronous HTTP requests to a server, and also handles the response.
-    axios
-      .get(`https://dummyjson.com/products/category/beauty`)
-      .then((res: { data: any }) => {
-        setSimilarProducts(res.data.products); // Access the 'products' array!
-      });
-  }, []);
-
-  //
-  const handleAddToCart = () => {
-    if (onAddToCart !== undefined) onAddToCart();
-    setNumberOfProducts(numberOfProducts + 1);
-  };
 
   const calculateDiscountPrice =
     originalPrice - (originalPrice / 100) * discountPercentage;
@@ -211,7 +185,6 @@ function Product(props: HeaderMenuInterface) {
           </Box>
           <Link to={`/product/${id}`}>
             <Box
-              onClick={handleAddToCart}
               sx={{
                 py: "8px",
                 px: "16px",

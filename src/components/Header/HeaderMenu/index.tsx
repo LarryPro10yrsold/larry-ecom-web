@@ -20,6 +20,12 @@ function HeaderMenu({
 }: HeaderMenuInterface) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = useState(false);
+  const [signInUsername, setSignInUsername] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+  const [loginUsername, setLoginUsername] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const handleLogin = () => {
     setIsPopupOpen(true);
@@ -38,6 +44,43 @@ function HeaderMenu({
   const HandleGoBack = () => {
     setIsPopupOpen2(false);
     setIsPopupOpen(true);
+  };
+  const OnSubmitCheckPass = () => {
+    if (
+      signInUsername === "" ||
+      newPassword === "" ||
+      confirmNewPassword === ""
+    ) {
+      setStatusMessage("All fields are required.");
+    } else if (newPassword !== confirmNewPassword) {
+      setStatusMessage("Passwords do not match.");
+    } else {
+      console.log("this condition is working");
+      localStorage.setItem("username", `${signInUsername}`);
+      localStorage.setItem("password", `${newPassword}`);
+
+      // store the username and password into local storage
+      setStatusMessage("yay");
+    }
+  };
+
+  const onSubmitLoginPass = () => {
+    console.log(localStorage.getItem(loginUsername));
+    if (
+      localStorage.getItem(loginUsername) === "" ||
+      localStorage.getItem(loginPassword) === ""
+    ) {
+      setStatusMessage("All fields are required.");
+    } else if (
+      localStorage.getItem(loginUsername) !==
+      localStorage.getItem(loginUsername)
+    ) {
+    } else if (
+      localStorage.getItem(loginPassword) !==
+      localStorage.getItem(loginPassword)
+    ) {
+      setStatusMessage("Passwords do not match.");
+    }
   };
   return (
     <Box
@@ -171,6 +214,8 @@ function HeaderMenu({
             />
           </Typography>{" "}
           <Input
+            value={loginUsername}
+            onChange={(e) => setLoginUsername(e.target.value)}
             placeholder="Your username here..."
             sx={{
               border: "2px solid rgb(59 130 246)",
@@ -188,6 +233,10 @@ function HeaderMenu({
             }}
           />{" "}
           <Input
+            required
+            value={loginPassword}
+            onChange={(e) => setLoginPassword(e.target.value)}
+            type="password"
             placeholder="Your password here..."
             sx={{
               border: "2px solid rgb(59 130 246)",
@@ -198,14 +247,16 @@ function HeaderMenu({
                 borderBottom: "none",
               },
               "&.MuiInputBase-root:after": {
-                borderBottom: "non   e",
+                borderBottom: "none",
               },
               mt: 2,
               borderRadius: "4px",
             }}
           />
           <Box
+            onClick={onSubmitLoginPass}
             sx={{
+              cursor: "pointer",
               bgcolor: "rgb(59 130 246)",
               display: "flex",
               justifyContent: "center",
@@ -218,6 +269,17 @@ function HeaderMenu({
           >
             Submit
           </Box>
+          <Typography
+            sx={{
+              mt: 1,
+              color: statusMessage.includes("yay")
+                ? "rgb(22 163 74)"
+                : "rgb(220 38 38)",
+            }}
+          >
+            {" "}
+            {statusMessage}
+          </Typography>
           <Box sx={{ display: "flex", mt: 1, mx: 11 }}>
             No Account?
             <Typography
@@ -234,8 +296,8 @@ function HeaderMenu({
         <Box
           sx={{
             position: "absolute",
-            top: "40%",
-            left: "42%",
+            top: "36%",
+            left: "40%",
             width: 400,
             bgcolor: "background.paper",
             boxShadow: 24,
@@ -255,9 +317,9 @@ function HeaderMenu({
           >
             <EditNoteIcon />
             Register
-            <EditNoteIcon />{" "}
+            <EditNoteIcon />
             <CloseIcon
-              onClick={closePopup}
+              onClick={closePopup2}
               sx={{
                 position: "absolute",
                 bottom: "25px",
@@ -265,15 +327,107 @@ function HeaderMenu({
                 cursor: "pointer",
               }}
             />
-          </Typography>{" "}
+          </Typography>
+
           <Box sx={{ mt: 1 }}>
-            This is a hobby project for development purpose only. No well suited
-            backend has been used here.
+            <Input
+              required
+              placeholder="Your new username here..."
+              value={signInUsername}
+              onChange={(e) => setSignInUsername(e.target.value)}
+              sx={{
+                border: "2px solid rgb(59 130 246)",
+                width: "336px",
+                px: "12px",
+                py: "2px",
+                "&.MuiInputBase-root:before": {
+                  borderBottom: "none",
+                },
+                "&.MuiInputBase-root:after": {
+                  borderBottom: "none",
+                },
+                mt: 2,
+                borderRadius: "4px",
+              }}
+            />
+
+            <Input
+              required
+              placeholder="Your new password here..."
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              sx={{
+                border: "2px solid rgb(59 130 246)",
+                width: "336px",
+                px: "12px",
+                py: "2px",
+                "&.MuiInputBase-root:before": {
+                  borderBottom: "none",
+                },
+                "&.MuiInputBase-root:after": {
+                  borderBottom: "none",
+                },
+                mt: 2,
+                borderRadius: "4px",
+              }}
+            />
+
+            <Input
+              required
+              placeholder="Confirm your new password here..."
+              type="password"
+              value={confirmNewPassword}
+              onChange={(e) => setConfirmNewPassword(e.target.value)}
+              sx={{
+                border: "2px solid rgb(59 130 246)",
+                width: "336px",
+                px: "12px",
+                py: "2px",
+                "&.MuiInputBase-root:before": {
+                  borderBottom: "none",
+                },
+                "&.MuiInputBase-root:after": {
+                  borderBottom: "none",
+                },
+                mt: 2,
+                borderRadius: "4px",
+              }}
+            />
+
             <Typography
-              onClick={HandleGoBack}
-              sx={{ color: "rgb(59 130 246)", cursor: "pointer" }}
+              sx={{
+                mt: 1,
+                color: statusMessage.includes("yay")
+                  ? "rgb(22 163 74)"
+                  : "rgb(220 38 38)",
+              }}
             >
               {" "}
+              {statusMessage}
+            </Typography>
+
+            <Box
+              onClick={OnSubmitCheckPass}
+              sx={{
+                bgcolor: "rgb(59 130 246)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                p: 1,
+                color: "white",
+                borderRadius: "2px",
+                mt: 1,
+                cursor: "pointer",
+              }}
+            >
+              Submit
+            </Box>
+
+            <Typography
+              onClick={HandleGoBack}
+              sx={{ color: "rgb(59 130 246)", cursor: "pointer", mt: 1 }}
+            >
               Go to login
             </Typography>
           </Box>

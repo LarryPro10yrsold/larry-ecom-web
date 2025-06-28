@@ -14,7 +14,7 @@ function App() {
       .get(`https://dummyjson.com/products?limit=24`)
       .then((res: { data: any }) => {
         setSimilarProducts(res.data.products);
-        console.log("app.tsx");
+        console.log("app.tsx`");
       });
   }, []);
 

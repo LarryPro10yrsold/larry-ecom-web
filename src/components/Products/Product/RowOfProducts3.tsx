@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import Product from ".";
+import Product from "./";
 interface ProductInterface {
   id: number;
   title: string;
