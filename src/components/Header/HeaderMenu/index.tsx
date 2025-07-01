@@ -26,6 +26,7 @@ function HeaderMenu({
   const [statusMessage, setStatusMessage] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState("");
 
   const handleLogin = () => {
     setIsPopupOpen(true);
@@ -65,21 +66,44 @@ function HeaderMenu({
   };
 
   const onSubmitLoginPass = () => {
-    console.log(localStorage.getItem(loginUsername));
     if (
-      localStorage.getItem(loginUsername) === "" ||
-      localStorage.getItem(loginPassword) === ""
+      // either loginUsername is empty or loginPassword is empty
+      loginUsername === "" ||
+      loginPassword === ""
     ) {
       setStatusMessage("All fields are required.");
     } else if (
-      localStorage.getItem(loginUsername) !==
-      localStorage.getItem(loginUsername)
+      localStorage.getItem("password") !== loginPassword ||
+      localStorage.getItem("username") !== loginUsername
     ) {
-    } else if (
-      localStorage.getItem(loginPassword) !==
-      localStorage.getItem(loginPassword)
-    ) {
-      setStatusMessage("Passwords do not match.");
+      if (localStorage.getItem("password") !== loginPassword) {
+        setStatusMessage("Passwords do not match.");
+      } else if (localStorage.getItem("username") !== loginUsername) {
+        setStatusMessage("Usernames do not match.");
+      } else {
+        setStatusMessage("Both fields are incorrect.");
+      }
+    }
+
+    // else if (
+    //   localStorage.getItem("password") !== loginPassword &&
+    //   localStorage.getItem("username") !== loginUsername
+    // ) {
+    //   setStatusMessage("Both fields are incorrect.");
+    // } else if (
+    //   // loginUsername is not the same as the local storage`username` or
+    //   // loginPassword is not the same as local storage `password`
+    //   localStorage.getItem("password") !== loginPassword
+    // ) {
+    //   setStatusMessage("Passwords do not match.");
+    // } else if (localStorage.getItem("username") !== loginUsername) {
+    //   setStatusMessage("Usernames do not match.");
+    // }
+    else {
+      // if both of them are different
+      setStatusMessage("yay");
+      setIsPopupOpen(false);
+      setLoggedInUser(loginUsername);
     }
   };
   return (
@@ -132,7 +156,7 @@ function HeaderMenu({
             display: { xs: "none", sm: "block" },
           }}
         >
-          Login
+          {loggedInUser || "Login"}
         </Typography>
       </Box>
       <Box
