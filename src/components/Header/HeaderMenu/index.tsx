@@ -6,6 +6,7 @@ import { useState } from "react";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import CloseIcon from "@mui/icons-material/Close";
 import EditNoteIcon from "@mui/icons-material/EditNote";
+import axios from "axios";
 
 interface HeaderMenuInterface {
   isDarkMode: boolean;
@@ -27,6 +28,7 @@ function HeaderMenu({
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [loggedInUser, setLoggedInUser] = useState("");
+  const [token, setToken] = useState("");
 
   const handleLogin = () => {
     setIsPopupOpen(true);
@@ -65,26 +67,7 @@ function HeaderMenu({
     }
   };
 
-  const onSubmitLoginPass = () => {
-    if (
-      // either loginUsername is empty or loginPassword is empty
-      loginUsername === "" ||
-      loginPassword === ""
-    ) {
-      setStatusMessage("All fields are required.");
-    } else if (
-      localStorage.getItem("password") !== loginPassword ||
-      localStorage.getItem("username") !== loginUsername
-    ) {
-      if (localStorage.getItem("password") !== loginPassword) {
-        setStatusMessage("Passwords do not match.");
-      } else if (localStorage.getItem("username") !== loginUsername) {
-        setStatusMessage("Usernames do not match.");
-      } else {
-        setStatusMessage("Both fields are incorrect.");
-      }
-    }
-
+  const onSubmitLoginPass = async () => {
     // else if (
     //   localStorage.getItem("password") !== loginPassword &&
     //   localStorage.getItem("username") !== loginUsername
@@ -99,13 +82,29 @@ function HeaderMenu({
     // } else if (localStorage.getItem("username") !== loginUsername) {
     //   setStatusMessage("Usernames do not match.");
     // }
-    else {
-      // if both of them are different
-      setStatusMessage("yay");
-      setIsPopupOpen(false);
+
+    const resp = await axios.post("https://dummyjson.com/auth/login", {
+      username: loginUsername,
+      password: loginPassword,
+    });
+
+    if (resp.status === 200) {
+      setStatusMessage("Login complete.");
       setLoggedInUser(loginUsername);
+      setToken(resp.data.accessToken);
+    } else {
+      setStatusMessage("Login failed");
     }
+
+    console.log(token);
+    const userFetchInfo = await axios.get("https://dummyjson.com/auth/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(userFetchInfo.data);
   };
+
   return (
     <Box
       sx={{
@@ -278,7 +277,9 @@ function HeaderMenu({
             }}
           />
           <Box
-            onClick={onSubmitLoginPass}
+            onClick={() => {
+              onSubmitLoginPass();
+            }}
             sx={{
               cursor: "pointer",
               bgcolor: "rgb(59 130 246)",
@@ -296,7 +297,7 @@ function HeaderMenu({
           <Typography
             sx={{
               mt: 1,
-              color: statusMessage.includes("yay")
+              color: statusMessage.includes("complete")
                 ? "rgb(22 163 74)"
                 : "rgb(220 38 38)",
             }}
@@ -422,7 +423,7 @@ function HeaderMenu({
             <Typography
               sx={{
                 mt: 1,
-                color: statusMessage.includes("yay")
+                color: statusMessage.includes("Login failed.")
                   ? "rgb(22 163 74)"
                   : "rgb(220 38 38)",
               }}
@@ -432,7 +433,9 @@ function HeaderMenu({
             </Typography>
 
             <Box
-              onClick={OnSubmitCheckPass}
+              onClick={() => {
+                OnSubmitCheckPass();
+              }}
               sx={{
                 bgcolor: "rgb(59 130 246)",
                 display: "flex",
