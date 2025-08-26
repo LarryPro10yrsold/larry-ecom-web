@@ -4,13 +4,10 @@ import CloseIcon from "@mui/icons-material/Close";
 interface RegisterUI {
   signInUsername: string;
   setSignInUsername: React.Dispatch<React.SetStateAction<string>>;
-
   newPassword: string;
   setNewPassword: React.Dispatch<React.SetStateAction<string>>;
-
   confirmNewPassword: string;
   setConfirmNewPassword: React.Dispatch<React.SetStateAction<string>>;
-
   statusMessage: string;
   OnSubmitCheckPass: () => void;
   HandleGoBack: () => void;
@@ -55,7 +52,7 @@ function SignInUI(props: RegisterUI) {
         Register
         <EditNoteIcon />
         <CloseIcon
-          onClick={closePopup}
+          onClick={closePopup2}
           sx={{
             position: "absolute",
             bottom: "25px",

@@ -13,10 +13,11 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { MouseEventHandler, useEffect, useState } from "react";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import CloseIcon from "@mui/icons-material/Close";
-import EditNoteIcon from "@mui/icons-material/EditNote";
 import axios from "axios";
 import React from "react";
-import SignInUI from "./SignInUI";
+import SignInUI from "./SignUP";
+import SignIn from "./SignIn";
+import CustomerInfoPopup from "./CustomerInfoPopup";
 
 interface HeaderMenuInterface {
   isDarkMode: boolean;
@@ -48,7 +49,7 @@ function HeaderMenu({
   const [isPopupOpen2, setIsPopupOpen2] = useState(false);
   const [signInUsername, setSignInUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState(""); // to find what type a state, variable etc is, just hover onto it, and copy what it is
   const [statusMessage, setStatusMessage] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -208,102 +209,17 @@ function HeaderMenu({
           {loggedInUser || "Login"}
         </Typography>
       </Box>
-      <Popover
+      <CustomerInfoPopup
         id={id}
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        sx={{
-          "& .MuiPaper-root": {
-            width: "22%",
-            flexDirection: "column",
-            display: "flex",
-            justifyContent: "center",
-            minHeight: "350px",
-            alignItems: "center",
-            p: 2,
-          },
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: "20px",
-          }}
-        >
-          <Avatar
-            sx={{
-              margin: 3,
-              width: "80px",
-              height: "80px",
-            }}
-            src={userData?.image as string} // as string is overriding the type for the image
-          />
-          <Box>
-            <Typography fontSize="20px" fontWeight="550">
-              {userData?.firstName} {userData?.lastName}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: "20px",
-                opacity: "0.8",
-              }}
-            >
-              {userData?.role}
-            </Typography>{" "}
-          </Box>
-        </Box>{" "}
-        <Divider sx={{ width: "100%", mb: 2 }} />{" "}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
-        >
-          <Typography fontSize="20px">gender : {userData?.gender}</Typography>{" "}
-          <Typography fontSize="20px">
-            username : {userData?.username}{" "}
-          </Typography>{" "}
-          <Typography fontSize="20px">
-            phone number : {userData?.phone}{" "}
-          </Typography>
-          <Typography fontSize="20px">email : {userData?.email}</Typography>{" "}
-          <Typography fontSize="20px">
-            address : {userData?.address.address}{" "}
-            {/* if the keys are still throwing an error and you accessed the data correctly, try defining it more specifically like the userProfile Interface above ^^^  */}
-          </Typography>{" "}
-          <Typography fontSize="20px">age : {userData?.age}</Typography>{" "}
-        </Box>
-        <Box
-          onClick={() => {
-            setStatusMessage("");
-            setLoggedInUser("");
-            setToken("");
-            setUserData(null);
-            handleClose();
-          }}
-          sx={{
-            p: 1,
-            background: "#32B8F0",
-            color: "white",
-            borderRadius: "8px",
-            width: "24%",
-            display: "flex",
-            justifyContent: "center",
-            mt: "20px",
-            fontSize: "20px",
-            cursor: "pointer",
-          }}
-        >
-          logout
-        </Box>
-      </Popover>
+        userData={userData}
+        setStatusMessage={setStatusMessage}
+        setLoggedInUser={setLoggedInUser}
+        setToken={setToken}
+        setUserData={setUserData}
+        handleClose={handleClose}
+      />
       <Box
         sx={{
           display: "flex",
@@ -347,120 +263,16 @@ function HeaderMenu({
         />
       </Box>
       <Modal open={isPopupOpen} onClose={closePopup}>
-        {/* // isSigningUP ? LoginComponent : RegisterComponent */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            width: 400,
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 4,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <Typography
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "20px",
-              fontWeight: "600",
-              justifyContent: "center",
-              position: "relative",
-            }}
-          >
-            <LockOpenIcon />
-            Login
-            <LockOpenIcon />{" "}
-            <CloseIcon
-              onClick={closePopup}
-              sx={{
-                position: "absolute",
-                bottom: "25px",
-                left: "330px",
-                cursor: "pointer",
-              }}
-            />
-          </Typography>{" "}
-          <Input
-            value={loginUsername}
-            onChange={(e) => setLoginUsername(e.target.value)}
-            placeholder="Your username here..."
-            sx={{
-              border: "2px solid rgb(59 130 246)",
-              width: "336px",
-              px: "12px",
-              py: "2px",
-              "&.MuiInputBase-root:before": {
-                borderBottom: "none",
-              },
-              "&.MuiInputBase-root:after": {
-                borderBottom: "none",
-              },
-              mt: 2,
-              borderRadius: "4px",
-            }}
-          />{" "}
-          <Input
-            required
-            value={loginPassword}
-            onChange={(e) => setLoginPassword(e.target.value)}
-            type="password"
-            placeholder="Your password here..."
-            sx={{
-              border: "2px solid rgb(59 130 246)",
-              width: "336px",
-              px: "12px",
-              py: "2px",
-              "&.MuiInputBase-root:before": {
-                borderBottom: "none",
-              },
-              "&.MuiInputBase-root:after": {
-                borderBottom: "none",
-              },
-              mt: 2,
-              borderRadius: "4px",
-            }}
-          />
-          <Box
-            onClick={onSubmitLoginPass}
-            sx={{
-              cursor: "pointer",
-              bgcolor: "rgb(59 130 246)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              p: 1,
-              color: "white",
-              borderRadius: "2px",
-              mt: 1,
-            }}
-          >
-            Submit
-          </Box>
-          <Typography
-            sx={{
-              mt: 1,
-              color: statusMessage.includes("yay")
-                ? "rgb(22 163 74)"
-                : "rgb(220 38 38)",
-            }}
-          >
-            {" "}
-            {statusMessage}
-          </Typography>
-          <Box sx={{ display: "flex", mt: 1, mx: 11 }}>
-            No Account?
-            <Typography
-              onClick={handleRegister}
-              sx={{ color: "rgb(59 130 246)", ml: "4px", cursor: "pointer" }}
-            >
-              {" "}
-              Register
-            </Typography>
-          </Box>
-        </Box>
+        <SignIn
+          statusMessage={statusMessage}
+          loginUsername={loginUsername}
+          closePopup={closePopup}
+          setLoginUsername={setLoginUsername}
+          loginPassword={loginPassword}
+          setLoginPassword={setLoginPassword}
+          handleRegister={handleRegister}
+          onSubmitLoginPass={onSubmitLoginPass}
+        />
       </Modal>{" "}
       <Modal open={isPopupOpen2} onClose={closePopup2}>
         <SignInUI
@@ -481,6 +293,3 @@ function HeaderMenu({
 }
 
 export default HeaderMenu;
-function onAddToCart() {
-  throw new Error("Function not implemented.");
-}
