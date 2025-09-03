@@ -11,9 +11,9 @@ interface RegisterUI {
   statusMessage: string;
   OnSubmitCheckPass: () => void;
   HandleGoBack: () => void;
-  closePopup2: () => void;
+  closePopup: () => void;
 }
-function SignInUI(props: RegisterUI) {
+function SignUpUI(props: RegisterUI) {
   const {
     signInUsername,
     setSignInUsername,
@@ -24,7 +24,7 @@ function SignInUI(props: RegisterUI) {
     HandleGoBack,
     confirmNewPassword,
     setConfirmNewPassword,
-    closePopup2,
+    closePopup,
   } = props;
   return (
     <Box
@@ -52,7 +52,7 @@ function SignInUI(props: RegisterUI) {
         Register
         <EditNoteIcon />
         <CloseIcon
-          onClick={closePopup2}
+          onClick={closePopup}
           sx={{
             position: "absolute",
             bottom: "25px",
@@ -170,4 +170,4 @@ function SignInUI(props: RegisterUI) {
   );
 }
 
-export default SignInUI;
+export default SignUpUI;

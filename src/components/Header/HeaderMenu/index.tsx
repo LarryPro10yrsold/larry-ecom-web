@@ -18,6 +18,7 @@ import React from "react";
 import SignInUI from "./SignUP";
 import SignIn from "./SignIn";
 import CustomerInfoPopup from "./CustomerInfoPopup";
+import SignUpUI from "./SignUP";
 
 interface HeaderMenuInterface {
   isDarkMode: boolean;
@@ -46,7 +47,6 @@ function HeaderMenu({
   numberOfProducts,
 }: HeaderMenuInterface) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isPopupOpen2, setIsPopupOpen2] = useState(false);
   const [signInUsername, setSignInUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState(""); // to find what type a state, variable etc is, just hover onto it, and copy what it is
@@ -57,6 +57,7 @@ function HeaderMenu({
   const [token, setToken] = useState("");
   const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
   const [userData, setUserData] = useState<UserProfile | null>(null); // Just in case if there's any error, add in another option as null & keys are like for example : firstName : John  and one | is or for types.
+  const [popUp, setPopUp] = useState("login");
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -78,15 +79,11 @@ function HeaderMenu({
   const closePopup = () => {
     setIsPopupOpen(false);
   };
-  const closePopup2 = () => {
-    setIsPopupOpen2(false);
-  };
   const handleRegister = () => {
-    setIsPopupOpen2(true);
-    setIsPopupOpen(false);
+    setIsPopupOpen(true);
+    setPopUp("sign up");
   };
   const HandleGoBack = () => {
-    setIsPopupOpen2(false);
     setIsPopupOpen(true);
   };
   const OnSubmitCheckPass = () => {
@@ -262,32 +259,33 @@ function HeaderMenu({
           }}
         />
       </Box>
-      <Modal open={isPopupOpen} onClose={closePopup}>
-        <SignIn
-          statusMessage={statusMessage}
-          loginUsername={loginUsername}
-          closePopup={closePopup}
-          setLoginUsername={setLoginUsername}
-          loginPassword={loginPassword}
-          setLoginPassword={setLoginPassword}
-          handleRegister={handleRegister}
-          onSubmitLoginPass={onSubmitLoginPass}
-        />
+      <Modal open={isPopupOpen} onClose={closePopup} onChange={isPopupOpen}>
+        {popUp === "login" ? (
+          <SignIn
+            statusMessage={statusMessage}
+            loginUsername={loginUsername}
+            closePopup={closePopup}
+            setLoginUsername={setLoginUsername}
+            loginPassword={loginPassword}
+            setLoginPassword={setLoginPassword}
+            handleRegister={handleRegister}
+            onSubmitLoginPass={onSubmitLoginPass}
+          />
+        ) : (
+          <SignUpUI
+            signInUsername={signInUsername}
+            setSignInUsername={setSignInUsername}
+            setNewPassword={setNewPassword}
+            newPassword={newPassword}
+            statusMessage={statusMessage}
+            OnSubmitCheckPass={OnSubmitCheckPass}
+            HandleGoBack={HandleGoBack}
+            confirmNewPassword={confirmNewPassword}
+            setConfirmNewPassword={setConfirmNewPassword}
+            closePopup={closePopup}
+          />
+        )}
       </Modal>{" "}
-      <Modal open={isPopupOpen2} onClose={closePopup2}>
-        <SignInUI
-          signInUsername={signInUsername}
-          setSignInUsername={setSignInUsername}
-          setNewPassword={setNewPassword}
-          newPassword={newPassword}
-          statusMessage={statusMessage}
-          OnSubmitCheckPass={OnSubmitCheckPass}
-          HandleGoBack={HandleGoBack}
-          confirmNewPassword={confirmNewPassword}
-          setConfirmNewPassword={setConfirmNewPassword}
-          closePopup2={closePopup2}
-        />
-      </Modal>
     </Box>
   );
 }
