@@ -19,9 +19,16 @@ interface HeaderMenuInterface {
 }
 
 function Product(props: HeaderMenuInterface) {
-  const { image, rates, name, originalPrice, type, id, discountPercentage } =
-    props;
-  const [numberOfProducts, setNumberOfProducts] = useState(0);
+  const {
+    image,
+    rates,
+    name,
+    originalPrice,
+    type,
+    id,
+    discountPercentage,
+    onAddToCart,
+  } = props;
 
   const calculateDiscountPrice =
     originalPrice - (originalPrice / 100) * discountPercentage;
@@ -185,6 +192,7 @@ function Product(props: HeaderMenuInterface) {
           </Box>
           <Link to={`/product/${id}`}>
             <Box
+              onClick={onAddToCart}
               sx={{
                 py: "8px",
                 px: "16px",

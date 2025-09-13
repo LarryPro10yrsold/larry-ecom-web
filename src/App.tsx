@@ -48,7 +48,15 @@ function App() {
               />
             }
           />
-          <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route
+            path="/product/:productId"
+            element={
+              <ProductDetail
+                numberOfProducts={numberOfProducts}
+                handleAddToCart={handleAddToCart}
+              />
+            }
+          />
         </Routes>
       </ThemeProvider>
     </StrictMode>

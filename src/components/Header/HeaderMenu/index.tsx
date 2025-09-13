@@ -1,24 +1,14 @@
-import {
-  Avatar,
-  Box,
-  Divider,
-  Input,
-  Modal,
-  Popover,
-  Typography,
-} from "@mui/material";
+import { Box, Modal, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { MouseEventHandler, useEffect, useState } from "react";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
-import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import React from "react";
-import SignInUI from "./SignUP";
 import SignIn from "./SignIn";
 import CustomerInfoPopup from "./CustomerInfoPopup";
 import SignUpUI from "./SignUP";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface HeaderMenuInterface {
   isDarkMode: boolean;
@@ -47,6 +37,7 @@ function HeaderMenu({
   numberOfProducts,
 }: HeaderMenuInterface) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupCartOpen, setIsPopupCartOpen] = useState(false);
   const [signInUsername, setSignInUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState(""); // to find what type a state, variable etc is, just hover onto it, and copy what it is
@@ -76,8 +67,15 @@ function HeaderMenu({
     }
   };
 
+  const handleOpenCart = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    setIsPopupCartOpen(true);
+  };
+
   const closePopup = () => {
     setIsPopupOpen(false);
+    setIsPopupCartOpen(false);
   };
   const handleRegister = () => {
     setIsPopupOpen(true);
@@ -225,6 +223,7 @@ function HeaderMenu({
         }}
       >
         <ShoppingCartIcon
+          onClick={handleOpenCart}
           style={{
             fontSize: "30px",
             cursor: "pointer",
@@ -259,7 +258,7 @@ function HeaderMenu({
           }}
         />
       </Box>
-      <Modal open={isPopupOpen} onClose={closePopup} onChange={isPopupOpen}>
+      <Modal open={isPopupOpen} onClose={closePopup}>
         {popUp === "login" ? (
           <SignIn
             statusMessage={statusMessage}
@@ -286,6 +285,59 @@ function HeaderMenu({
           />
         )}
       </Modal>{" "}
+      <Modal open={isPopupCartOpen} onClose={closePopup}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            width: "400px",
+            height: "100%",
+            background: "white",
+            p: 2,
+            border: "none",
+          }}
+        >
+          <Box sx={{}}>
+            <Typography sx={{ fontWeight: "600", fontSize: "1.5rem" }}>
+              {" "}
+              Your Cart
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                p: "3rem",
+                flexDirection: "column",
+              }}
+            >
+              <Box
+                component="img"
+                src="src/assets/emptyCart.jpg"
+                alt="e"
+                sx={{
+                  width: "10rem",
+                  height: "176px",
+                }}
+              ></Box>
+              <Typography sx={{ fontSize: "20px" }}>
+                {" "}
+                Your cart is empty.
+              </Typography>
+              <CloseIcon
+                onClick={closePopup}
+                sx={{
+                  position: "absolute",
+                  top: "20px",
+                  left: "360px",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
+          </Box>
+        </Box>
+      </Modal>
     </Box>
   );
 }

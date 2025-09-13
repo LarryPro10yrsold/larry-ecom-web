@@ -22,6 +22,8 @@ interface CustomerInfo {
   setToken: React.Dispatch<React.SetStateAction<string>>;
   setUserData: React.Dispatch<React.SetStateAction<string>>;
   handleClose: () => void;
+  open: () => void;
+  anchorEl: () => void;
 }
 
 function CustomerInfoPopup(props: CustomerInfo) {

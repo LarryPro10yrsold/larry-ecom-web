@@ -7,11 +7,15 @@ import CreditBanner from "../../components/CreditBanner";
 import Product from "../../components/Products/Product/";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+interface productDetailInterface {
+  numberOfProducts: number;
+  handleAddToCart: () => void;
+}
 
-function ProductDetail() {
+function ProductDetail(props: productDetailInterface) {
+  const { numberOfProducts, handleAddToCart } = props;
   const { productId } = useParams();
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [numberOfProducts, setNumberOfProducts] = useState(0);
   const [productDetail, setProductDetail] = useState<{
     description: string;
     discountPercentage: unknown;
@@ -106,6 +110,8 @@ function ProductDetail() {
             brand={productDetail?.brand ?? ""}
             stock={productDetail?.stock ?? 0}
             essence={productDetail?.category ?? ""}
+            numberOfProducts={numberOfProducts}
+            handleAddToCart={handleAddToCart}
           />
         </Box>
         <Box sx={{ py: { xs: "20px", sm: 0 } }}>

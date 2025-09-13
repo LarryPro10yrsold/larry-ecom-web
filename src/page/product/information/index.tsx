@@ -11,11 +11,21 @@ interface InformationInterface {
   brand: string;
   stock: number;
   essence: string;
+  handleAddToCart: () => void;
+  numberOfProducts: number;
 }
 
 function Information(props: InformationInterface) {
-  const { title, description, brand, stock, essence, discountPercentage } =
-    props;
+  const {
+    title,
+    description,
+    brand,
+    stock,
+    essence,
+    discountPercentage,
+    handleAddToCart,
+    numberOfProducts,
+  } = props;
   return (
     <Box sx={{ width: { md: "340px", lg: "493px" } }}>
       <Typography sx={{ fontWeight: "510", fontSize: "1.7rem" }}>
@@ -96,6 +106,7 @@ function Information(props: InformationInterface) {
         </Box>
         <Box sx={{ display: "flex", gap: "5px", mt: "10px" }}>
           <Box
+            onClick={handleAddToCart}
             sx={{
               py: "8px",
               px: "16px",
